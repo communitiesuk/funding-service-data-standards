@@ -177,6 +177,90 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /organisations:
+    get:
+      summary: List all organisations
+      operationId: listOrganisations
+      tags:
+        - organisation
+      parameters:
+        - in: query
+          name: sort
+          description: Sort order
+          schema:
+            type: string
+            enum: [asc, desc]
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            format: int32
+          description: The number of items to skip before starting to collect the result set
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            format: int32
+          description: The numbers of items to return
+      responses:
+        "200":
+          description: A paged array of organisations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Organisations"
+        "204":
+          description: No Organisations found
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorised
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /organisations/{organisationId}:
+    get:
+      summary: Info for a specific Organisation
+      operationId: showOrganisationById
+      tags:
+        - organisation
+      parameters:
+        - name: organisationId
+          in: path
+          required: true
+          description: The id of the Organisation to retrieve
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Organisation"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 components:
   schemas:
     Risk:
@@ -447,6 +531,104 @@ components:
           format: int32
         message:
           type: string
+    Organisation:
+      required:
+        - id
+        - organisation_name
+        - organisation_type
+        - address
+        - primary_contact
+        - date_created
+        - created_by
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: A system generated unique identifier for an Organisation.
+          example: 2358acb2-87be-4fc3-b38e-a184a0e0f359
+        organisation_name:
+          type: string
+          description: The name of the Organisation.
+          maxLength: 160
+          example: Barnet Council
+        organisation_type:
+          $ref: "#/components/schemas/OrganisationType"
+        companies_house_reference:
+          type: string
+          maxLength: 8
+          description: A unique reference for the Organisation as registered at Company House.
+          example: 12345678
+        charity_commission_number:
+          type: integer
+          format: int32
+          minLength: 7
+          maxLength: 8
+          description: A unique reference for the organisation as registered at the Charity Commission.
+          example: 876290123
+        local_authority_code:
+          type: string
+          description: A unique reference for a local authority also known as the Government Statistical Service (GSS) local authority (LA) code.
+          example: E06000001
+        address:
+          type: string
+          description: The address of the Organisation.
+          maxLength: 200
+          example: 2 Bristol Avenue, Bristol, BS1 1AA
+        primary_contact:
+          type: string
+          format: uuid
+          description: The primary contact for the Organisation.
+          example: f8aeeff6-6b83-11ef-ab51-325096b39f47
+        website:
+          type: string
+          description: The website of the Organisation.
+          maxLength: 256
+          example: https://www.barnet.gov.uk/
+        telephone_number:
+          type: integer
+          format: int32
+          description: The telephone number of the Organisation.
+          example: 020 8359 2000
+          maxLength: 15
+        email_address:
+          type: string
+          format: email
+          description: The email address of the Organisation.
+          maxLength: 254
+          example: info@organisation.com
+        date_created:
+          type: string
+          format: date-time
+          example: 2024-01-31T23:59:59Z
+        created_by:
+          type: string
+          format: uuid
+          example: f8aeeff6-6b83-11ef-ab51-325096b39f47
+        date_updated:
+          type: string
+          format: date-time
+          example: 2024-03-12T23:59:59Z
+        updated_by:
+          type: string
+          format: uuid
+          example: f8aeeff6-6b83-11ef-ab51-325096b39f47
+    OrganisationType:
+      type: string
+      description: The type of organisation
+      example: Local authority
+      default: Local authority
+      enum:
+        - Charity
+        - Community group
+        - Limited company
+        - Local authority
+        - Combined authority
+        - Public limited companies
+        - Other
+    Organisations:
+      type: array
+      items:
+        $ref: "#/components/schemas/Organisation"
   securitySchemes:
     bearerAuth:
       type: http
