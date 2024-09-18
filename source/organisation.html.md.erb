@@ -1,0 +1,176 @@
+---
+title: Organisation
+weight: 20
+---
+
+# Organisation
+### v0.1
+
+This data standard describes the information MHCLA collects about organisations, specifically for the purpose of funding
+
+- protect our people
+- protect our reputation
+- protect against financial loss
+- minimise disruption to the programmes which achieve our objectives
+
+## Status
+
+| Column header | Column header |
+|---------------|---------------|
+| The Funding Service SME | Lukas Dibben       |
+| Data Standard Owner (The Business) | n/a |
+| Status | In Progress |
+| Date | n/a |
+| Notes | n/a |
+
+
+## Data Entities
+
+The risk data standard consists of the following entities:
+
+- **Organisation** - the main data entity detailing Organisational information
+- **Person** - the main contact for the organisation
+- **Address** - the primary contact address
+
+## JSON Schema
+```
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema#",
+  "title": "Organisation",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "type",
+    "status",
+    "created_at",
+    "updated_at",
+    "company_house_number",
+    "charity_commission_number",
+    "local_authority_code",
+    "address",
+    "primary_contact",
+    "website",
+    "telephone_number",
+    "email_address",
+    "date_created"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "A system generated unique identifier for an organisation.",
+      "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the organisation.",
+      "maxLength": 255,
+      "example": "Department for Levelling Up, Housing and Communities"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the organisation.",
+      "enum": [
+        "Government Department",
+        "Local Authority",
+        "Private Sector",
+        "Non-Profit",
+        "Other"
+      ],
+      "example": "Government Department"
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the organisation.",
+      "enum": [
+        "Active",
+        "Inactive",
+        "Pending"
+      ],
+      "example": "Active"
+    },
+    "company_house_number": {
+      "type": "string",
+      "description": "A unique reference for the Organisation as registered at Company House.",
+      "example": "12345678"
+    },
+    "charity_commission_number": {
+      "type": "integer",
+      "format": "int32",
+      "minLength": 7,
+      "maxLength": 8,
+      "description": "A unique reference for the organisation as registered at the Charity Commission.",
+      "example": 876290123
+    },
+    "local_authority_code": {
+      "type": "string",
+      "description": "A unique reference for a local authority also known as the Government Statistical Service (GSS) local authority (LA) code.",
+      "example": "E06000001"
+    },
+    "address": {
+      "type": "string",
+      "description": "The address of the Organisation.",
+      "maxLength": 200,
+      "example": "2 Bristol Avenue, Bristol, BS1 1AA"
+    },
+    "primary_contact": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The primary contact for the Organisation.",
+      "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+    },
+    "website": {
+      "type": "string",
+      "description": "The website of the Organisation.",
+      "maxLength": 256,
+      "example": "https://www.barnet.gov.uk/"
+    },
+    "telephone_number": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The telephone number of the Organisation.",
+      "example": 2083592000,
+      "maxLength": 15
+    },
+    "email_address": {
+      "type": "string",
+      "format": "email",
+      "description": "The email address of the Organisation.",
+      "maxLength": 254,
+      "example": "info@organisation.com"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the organisation was created.",
+      "example": "2024-01-31T23:59:59Z"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the organisation was last updated.",
+      "example": "2024-03-12T23:59:59Z"
+    },
+    "date_created": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-01-31T23:59:59Z"
+    }
+  }
+}
+```
+
+
+## Reference Data
+Details of any reference data used within the Data fields above.
+
+| Reference data field | Options | Source | Description |
+|---------------|---------------|---------------|---------------|
+
+
+## Useful links
+This should contain a list of articles, assets or artefacts that went into the drafting of the data standard. 
+
+| Useful links | Details |
+|--------------|---------|
