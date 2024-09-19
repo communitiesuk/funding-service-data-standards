@@ -104,22 +104,94 @@
             "maxLength": 254,
             "example": "info@organisation.com"
         },
+        "active_date": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the Organisation was founded.",
+            "example": "2024-01-31"
+        },
+        "retirement_date": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the Organisation ceased to trade or was merged with another entity.",
+            "example": "2024-01-31"
+        },
         "created_at": {
             "type": "string",
             "format": "date-time",
-            "description": "The date and time when the organisation was created.",
+            "description": "The date and time when the Organisation entity was created.",
             "example": "2024-01-31T23:59:59Z"
+        },
+        "created_by": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The User that created the Organisation entity.",
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
         },
         "updated_at": {
             "type": "string",
             "format": "date-time",
-            "description": "The date and time when the organisation was last updated.",
+            "description": "The date and time when the Organisation entity was last updated.",
             "example": "2024-03-12T23:59:59Z"
         },
-        "date_created": {
+        "updated_by": {
             "type": "string",
-            "format": "date-time",
-            "example": "2024-01-31T23:59:59Z"
+            "format": "uuid",
+            "description": "The User that last updated the Organisation entity.",
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
         }
-    }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "Private Sector"
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            },
+            "then": {
+                "required": [
+                    "company_house_number"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "Non-Profit"
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            },
+            "then": {
+                "required": [
+                    "charity_commission_number"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "Local Authority"
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            },
+            "then": {
+                "required": [
+                    "local_authority_code"
+                ]
+            }
+        }
+    ]
 }

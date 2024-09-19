@@ -36,218 +36,224 @@ The risk data standard consists of the following entities:
 ## JSON Schema
 ```
 {
-  "$schema": "http://json-schema.org/draft/2020-12/schema#",
-  "title": "Risk",
-  "type": "object",
-  "required": [
-    "id",
-    "organisation_id",
-    "risk_title",
-    "risk_description",
-    "principal_risk_category",
-    "risk_status",
-    "risk_owner",
-    "risk_to_life",
-    "current_impact_score",
-    "current_likelihood_score",
-    "current_mitigations",
-    "planned_mitigations",
-    "target_impact_score",
-    "target_likelihood_score",
-    "date_created",
-    "created_by"
-  ],
-  "properties": {
-    "id": {
-      "type": "string",
-      "format": "uuid",
-      "description": "A system generated unique identifier for a risk.",
-      "example": "2358acb2-87be-4fc3-b38e-a184a0e0f359"
-    },
-    "organisation_id": {
-      "type": "string",
-      "format": "uuid",
-      "description": "A system generated unique identifier for the Organisation that owns and has reported the risk.",
-      "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968"
-    },
-    "risk_title": {
-      "type": "string",
-      "description": "A short description of the risk.",
-      "maxLength": 100,
-      "example": "Not using data standards risks delaying the delivery of digital tools."
-    },
-    "risk_description": {
-      "type": "string",
-      "description": "The details of the risk that should cover - What (hypothetically) could go wrong? What could happen to cause things to go wrong? What would the outcome be if it did go wrong?",
-      "maxLength": 5000,
-      "example": "There is a risk that our systems are compromised and we experiences data loss as a result of a successful cyber attack."
-    },
-    "principal_risk_category": {
-      "type": "string",
-      "description": "The primary categorisation of risks as defined by the department",
-      "example": "Information and data",
-      "enum": [
-        "Arms length bodies",
-        "Commercial",
-        "Financial",
-        "Governance",
-        "Information and data",
-        "Legal",
-        "Local Government delivery",
-        "People",
-        "Project delivery",
-        "Resilience",
-        "Security",
-        "Strategy",
-        "Systems and infrastructure"
-      ]
-    },
-    "risk_status": {
-      "type": "string",
-      "description": "Overall status of the risk",
-      "example": "Assessed",
-      "enum": [
-        "New/Identified",
-        "Assessed",
-        "Controlled",
-        "Escalated",
-        "Watch",
-        "Closed"
-      ]
-    },
-    "risk_owner": {
-      "type": "string",
-      "format": "uuid",
-      "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
-    },
-    "risk_to_life": {
-      "type": "boolean",
-      "description": "If there is a risk of avoidable deaths and/or serious injury in areas within our responsibility or stewardship, we need to record this within the risk.",
-      "example": false
-    },
-    "current_impact_score": {
-      "type": "integer",
-      "description": "A representation of the risks impact at the point it is recorded.",
-      "format": "int32",
-      "example": 3,
-      "minimum": 1,
-      "maximum": 5
-    },
-    "current_likelihood_score": {
-      "type": "integer",
-      "description": "A representation of the risk coming to fruition, as understood at the point the is recorded.",
-      "format": "int32",
-      "example": 4,
-      "minimum": 1,
-      "maximum": 5
-    },
-    "current_total_risk_score": {
-      "type": "integer",
-      "description": "A calculated data item to indicate the severity of the risk. It is calculated by multiplying current likelihood by current impact values.",
-      "format": "int32",
-      "example": 12,
-      "minimum": 5,
-      "maximum": 25
-    },
-    "current_mitigations": {
-      "type": "string",
-      "description": "Detail any current mitigations already in place for the risk.",
-      "maxLength": 2000,
-      "example": "Include colleagues from across MHCLG in data standards work to ensure buy in and adoption."
-    },
-    "planned_mitigations": {
-      "type": "string",
-      "description": "Detail any planned mitigations that will be in place for the risk.",
-      "maxLength": 2000,
-      "example": "Implement data standards governance framework to ensure use across MHCLG."
-    },
-    "target_impact_score": {
-      "type": "integer",
-      "description": "A representation of the risks impact following mitigation.",
-      "format": "int32",
-      "example": 2,
-      "minimum": 1,
-      "maximum": 5
-    },
-    "target_likelihood_score": {
-      "type": "integer",
-      "description": "A representation of the risk coming to fruition, following mitigation.",
-      "format": "int32",
-      "example": 3,
-      "minimum": 1,
-      "maximum": 5
-    },
-    "target_total_risk_score": {
-      "type": "integer",
-      "description": "A calculated data item to indicate the severity of the risk. It is calculated by multiplying target likelihood by target impact values.",
-      "format": "int32",
-      "example": 6,
-      "minimum": 5,
-      "maximum": 25
-    },
-    "proximity": {
-      "type": "string",
-      "description": "Determine the suitable timescale of the impact of this risk.",
-      "example": "3 to 12 months",
-      "enum": [
-        "< 3 months",
-        "3 to 12 months",
-        "12 to 24 months",
-        "24 to 36 months",
-        "> 36 months"
-      ]
-    },
-    "risk_approach": {
-      "type": "string",
-      "description": "If the target score is lower than the current score then the Risk Owner may determine that additional mitigations need to be planned and implemented to reduce the current score to the target score. This would be the 'Treat' approach. If the Risk Owner decides they are content that no further mitigations or possible or necessary, this would be the 'Tolerate' approach.",
-      "example": "Treat",
-      "enum": [
-        "Treat",
-        "Tolerate"
-      ]
-    },
-    "path_to_target": {
-      "type": "boolean",
-      "description": "Are the planned mitigations sufficient to bring the risk within target?",
-      "example": true
-    },
-    "date_to_target": {
-      "type": "string",
-      "description": "Date by which risk is expected to be within target - would often expect this to be the latest date of implementation for mitigations",
-      "format": "date",
-      "example": "2022-12-31"
-    },
-    "date_created": {
-      "type": "string",
-      "format": "date-time",
-      "example": "2024-01-31T23:59:59Z"
-    },
-    "created_by": {
-      "type": "string",
-      "format": "uuid",
-      "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
-    },
-    "date_updated": {
-      "type": "string",
-      "format": "date-time",
-      "example": "2024-03-12T23:59:59Z"
-    },
-    "updated_by": {
-      "type": "string",
-      "format": "uuid",
-      "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
-    },
-    "date_closed": {
-      "type": "string",
-      "format": "date-time",
-      "example": "2024-04-12T23:59:59Z"
-    },
-    "closed_by": {
-      "type": "string",
-      "format": "uuid",
-      "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+    "$schema": "http://json-schema.org/draft/2020-12/schema#",
+    "title": "Risk",
+    "type": "object",
+    "required": [
+        "id",
+        "organisation_id",
+        "risk_title",
+        "risk_description",
+        "principal_risk_category",
+        "risk_status",
+        "risk_owner",
+        "risk_to_life",
+        "current_impact_score",
+        "current_likelihood_score",
+        "current_mitigations",
+        "planned_mitigations",
+        "target_impact_score",
+        "target_likelihood_score",
+        "date_created",
+        "created_by"
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A system generated unique identifier for a risk.",
+            "example": "2358acb2-87be-4fc3-b38e-a184a0e0f359"
+        },
+        "organisation_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A system generated unique identifier for the Organisation that owns and has reported the risk.",
+            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968"
+        },
+        "risk_title": {
+            "type": "string",
+            "description": "A short description of the risk.",
+            "maxLength": 100,
+            "example": "Not using data standards risks delaying the delivery of digital tools."
+        },
+        "risk_description": {
+            "type": "string",
+            "description": "The details of the risk that should cover - What (hypothetically) could go wrong? What could happen to cause things to go wrong? What would the outcome be if it did go wrong?",
+            "maxLength": 5000,
+            "example": "There is a risk that our systems are compromised and we experiences data loss as a result of a successful cyber attack."
+        },
+        "principal_risk_category": {
+            "type": "string",
+            "description": "The primary categorisation of risks as defined by the department",
+            "example": "Information and data",
+            "enum": [
+                "Arms length bodies",
+                "Commercial",
+                "Financial",
+                "Governance",
+                "Information and data",
+                "Legal",
+                "Local Government delivery",
+                "People",
+                "Project delivery",
+                "Resilience",
+                "Security",
+                "Strategy",
+                "Systems and infrastructure"
+            ]
+        },
+        "risk_status": {
+            "type": "string",
+            "description": "Overall status of the risk",
+            "example": "Assessed",
+            "enum": [
+                "New/Identified",
+                "Assessed",
+                "Controlled",
+                "Escalated",
+                "Watch",
+                "Closed"
+            ]
+        },
+        "risk_owner": {
+            "type": "string",
+            "format": "uuid",
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+        },
+        "risk_to_life": {
+            "type": "boolean",
+            "description": "If there is a risk of avoidable deaths and/or serious injury in areas within our responsibility or stewardship, we need to record this within the risk.",
+            "example": false
+        },
+        "current_impact_score": {
+            "type": "integer",
+            "description": "A representation of the risks impact at the point it is recorded.",
+            "format": "int32",
+            "example": 3,
+            "minimum": 1,
+            "maximum": 5
+        },
+        "current_likelihood_score": {
+            "type": "integer",
+            "description": "A representation of the risk coming to fruition, as understood at the point the is recorded.",
+            "format": "int32",
+            "example": 4,
+            "minimum": 1,
+            "maximum": 5
+        },
+        "current_total_risk_score": {
+            "type": "integer",
+            "description": "A calculated data item to indicate the severity of the risk. It is calculated by multiplying current likelihood by current impact values.",
+            "format": "int32",
+            "example": 12,
+            "minimum": 5,
+            "maximum": 25
+        },
+        "current_mitigations": {
+            "type": "string",
+            "description": "Detail any current mitigations already in place for the risk.",
+            "maxLength": 2000,
+            "example": "Include colleagues from across MHCLG in data standards work to ensure buy in and adoption."
+        },
+        "planned_mitigations": {
+            "type": "string",
+            "description": "Detail any planned mitigations that will be in place for the risk.",
+            "maxLength": 2000,
+            "example": "Implement data standards governance framework to ensure use across MHCLG."
+        },
+        "target_impact_score": {
+            "type": "integer",
+            "description": "A representation of the risks impact following mitigation.",
+            "format": "int32",
+            "example": 2,
+            "minimum": 1,
+            "maximum": 5
+        },
+        "target_likelihood_score": {
+            "type": "integer",
+            "description": "A representation of the risk coming to fruition, following mitigation.",
+            "format": "int32",
+            "example": 3,
+            "minimum": 1,
+            "maximum": 5
+        },
+        "target_total_risk_score": {
+            "type": "integer",
+            "description": "A calculated data item to indicate the severity of the risk. It is calculated by multiplying target likelihood by target impact values.",
+            "format": "int32",
+            "example": 6,
+            "minimum": 5,
+            "maximum": 25
+        },
+        "proximity": {
+            "type": "string",
+            "description": "Determine the suitable timescale of the impact of this risk.",
+            "example": "3 to 12 months",
+            "enum": [
+                "< 3 months",
+                "3 to 12 months",
+                "12 to 24 months",
+                "24 to 36 months",
+                "> 36 months"
+            ]
+        },
+        "risk_approach": {
+            "type": "string",
+            "description": "If the target score is lower than the current score then the Risk Owner may determine that additional mitigations need to be planned and implemented to reduce the current score to the target score. This would be the 'Treat' approach. If the Risk Owner decides they are content that no further mitigations or possible or necessary, this would be the 'Tolerate' approach.",
+            "example": "Treat",
+            "enum": [
+                "Treat",
+                "Tolerate"
+            ]
+        },
+        "path_to_target": {
+            "type": "boolean",
+            "description": "Are the planned mitigations sufficient to bring the risk within target?",
+            "example": true
+        },
+        "date_to_target": {
+            "type": "string",
+            "description": "Date by which risk is expected to be within target - would often expect this to be the latest date of implementation for mitigations",
+            "format": "date",
+            "example": "2022-12-31"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the Risk was created.",
+            "example": "2024-01-31T23:59:59Z"
+        },
+        "created_by": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The User that created the Risk entity.",
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the Risk entity was last updated.",
+            "example": "2024-03-12T23:59:59Z"
+        },
+        "updated_by": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The User that last updated the Risk entity.",
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+        },
+        "date_closed": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the Risk entity was closed.",
+            "example": "2024-04-12T23:59:59Z"
+        },
+        "closed_by": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The User that closed the Risk entity.",
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+        }
     }
-  }
 }
 ```
 

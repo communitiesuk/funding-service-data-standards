@@ -180,34 +180,40 @@
             "format": "date",
             "example": "2022-12-31"
         },
-        "date_created": {
+        "created_at": {
             "type": "string",
             "format": "date-time",
+            "description": "The date and time when the Risk was created.",
             "example": "2024-01-31T23:59:59Z"
         },
         "created_by": {
             "type": "string",
             "format": "uuid",
+            "description": "The User that created the Risk entity.",
             "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
         },
-        "date_updated": {
+        "updated_at": {
             "type": "string",
             "format": "date-time",
+            "description": "The date and time when the Risk entity was last updated.",
             "example": "2024-03-12T23:59:59Z"
         },
         "updated_by": {
             "type": "string",
             "format": "uuid",
+            "description": "The User that last updated the Risk entity.",
             "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
         },
         "date_closed": {
             "type": "string",
             "format": "date-time",
+            "description": "The date and time when the Risk entity was closed.",
             "example": "2024-04-12T23:59:59Z"
         },
         "closed_by": {
             "type": "string",
             "format": "uuid",
+            "description": "The User that closed the Risk entity.",
             "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
         }
     }
