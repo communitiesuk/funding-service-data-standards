@@ -12,6 +12,7 @@ header_links:
   # About: https://www.larry-the-cat.service.gov.uk/about
   # Get Started: https://www.larry-the-cat.service.gov.uk/get-started
   Documentation: /
+  OpenAPI: /openapi.json
   # Support: https://www.larry-the-cat.service.gov.uk/support
 
 # Enables search functionality. This indexes pages only and is not recommended for single-page sites.
