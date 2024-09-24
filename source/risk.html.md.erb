@@ -54,7 +54,7 @@ The risk data standard consists of the following entities:
         "planned_mitigations",
         "target_impact_score",
         "target_likelihood_score",
-        "date_created",
+        "created_at",
         "created_by"
     ],
     "properties": {
@@ -62,19 +62,22 @@ The risk data standard consists of the following entities:
             "type": "string",
             "format": "uuid",
             "description": "A system generated unique identifier for a risk.",
-            "example": "2358acb2-87be-4fc3-b38e-a184a0e0f359"
+            "example": "2358acb2-87be-4fc3-b38e-a184a0e0f359",
+            "pattern": "^[a-z0-9\\-]+$"
         },
         "organisation_id": {
             "type": "string",
             "format": "uuid",
             "description": "A system generated unique identifier for the Organisation that owns and has reported the risk.",
-            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968"
+            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
+            "pattern": "^[a-z0-9\\-]+$"
         },
         "risk_title": {
             "type": "string",
             "description": "A short description of the risk.",
             "maxLength": 100,
-            "example": "Not using data standards risks delaying the delivery of digital tools."
+            "example": "There is a risk that our systems are compromised and the Ministry of Housing, Communities and Local Government (MHCLG) experiences data loss as a result of a successful cyber attack.",
+            "pattern": "^[a-zA-Z0-9!£%():;@?`\\- ]+$"
         },
         "risk_description": {
             "type": "string",
@@ -117,8 +120,10 @@ The risk data standard consists of the following entities:
         },
         "risk_owner": {
             "type": "string",
+            "description": "The User that is the owner for the risk, responsible for its overall management and reporting.",
             "format": "uuid",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
+            "pattern": "^[a-z0-9\\-]+$"
         },
         "risk_to_life": {
             "type": "boolean",
@@ -153,13 +158,13 @@ The risk data standard consists of the following entities:
             "type": "string",
             "description": "Detail any current mitigations already in place for the risk.",
             "maxLength": 2000,
-            "example": "Include colleagues from across MHCLG in data standards work to ensure buy in and adoption."
+            "example": "Implemented Microsoft Sentinel to act as central point for protective monitoring. Microsoft security Centre, Cloud App security are already in place."
         },
         "planned_mitigations": {
             "type": "string",
             "description": "Detail any planned mitigations that will be in place for the risk.",
             "maxLength": 2000,
-            "example": "Implement data standards governance framework to ensure use across MHCLG."
+            "example": "The environment is monitored by suppliers as part of the service level agreement. The long-term objectives are to onboard all third party/supplier logs to provide a centralised monitoring centre via Microsoft Sentinel."
         },
         "target_impact_score": {
             "type": "integer",
@@ -227,7 +232,8 @@ The risk data standard consists of the following entities:
             "type": "string",
             "format": "uuid",
             "description": "The User that created the Risk entity.",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
+            "pattern": "^[a-z0-9\\-]+$"
         },
         "updated_at": {
             "type": "string",
@@ -239,9 +245,10 @@ The risk data standard consists of the following entities:
             "type": "string",
             "format": "uuid",
             "description": "The User that last updated the Risk entity.",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
+            "pattern": "^[a-z0-9\\-]+$"
         },
-        "date_closed": {
+        "closed_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the Risk entity was closed.",
@@ -251,7 +258,8 @@ The risk data standard consists of the following entities:
             "type": "string",
             "format": "uuid",
             "description": "The User that closed the Risk entity.",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
+            "pattern": "^[a-z0-9\\-]+$"
         }
     }
 }

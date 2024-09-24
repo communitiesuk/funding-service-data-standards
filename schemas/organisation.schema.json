@@ -13,8 +13,6 @@
         "charity_commission_number",
         "local_authority_code",
         "address",
-        "primary_contact",
-        "website",
         "telephone_number",
         "email_address",
         "date_created"
@@ -24,13 +22,22 @@
             "type": "string",
             "format": "uuid",
             "description": "A system generated unique identifier for an organisation.",
-            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968"
+            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
+            "pattern": "^[a-z0-9\\-]+$"
         },
         "name": {
             "type": "string",
             "description": "The name of the organisation.",
-            "maxLength": 255,
-            "example": "Department for Levelling Up, Housing and Communities"
+            "maxLength": 160,
+            "example": "Department for Levelling Up, Housing and Communities",
+            "pattern": "^[a-zA-Z0-9&£$¥#.,:;@\\- ]+$"
+        },
+        "alternative_name": {
+            "type": "string",
+            "description": "An alternative name of the organisation.",
+            "maxLength": 160,
+            "example": "Department for Levelling Up, Housing and Communities",
+            "pattern": "^[a-zA-Z0-9&£$¥#.,:;@\\- ]+$"
         },
         "type": {
             "type": "string",
@@ -57,7 +64,8 @@
         "company_house_number": {
             "type": "string",
             "description": "A unique reference for the Organisation as registered at Company House.",
-            "example": "12345678"
+            "example": "12345678",
+            "pattern": "^(?:\\d{8}|[A-Z]{2}\\d{6})$"
         },
         "charity_commission_number": {
             "type": "integer",
@@ -65,12 +73,16 @@
             "minLength": 7,
             "maxLength": 8,
             "description": "A unique reference for the organisation as registered at the Charity Commission.",
-            "example": 876290123
+            "example": 87690123,
+            "pattern": "^(?:\\d{7,8}|\\d{6}-0?)$"
         },
         "local_authority_code": {
             "type": "string",
             "description": "A unique reference for a local authority also known as the Government Statistical Service (GSS) local authority (LA) code.",
-            "example": "E06000001"
+            "example": "E06000001",
+            "minLength": 9,
+            "maxLength": 9,
+            "pattern": "^[EJKLNMNSW][0-9]{8}$"
         },
         "address": {
             "type": "string",
@@ -82,7 +94,8 @@
             "type": "string",
             "format": "uuid",
             "description": "The primary contact for the Organisation.",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
+            "pattern": "^[a-z0-9\\-]+$"
         },
         "website": {
             "type": "string",
@@ -94,7 +107,7 @@
             "type": "integer",
             "format": "int32",
             "description": "The telephone number of the Organisation.",
-            "example": 2083592000,
+            "example": "02083592000",
             "maxLength": 15
         },
         "email_address": {
@@ -126,7 +139,8 @@
             "type": "string",
             "format": "uuid",
             "description": "The User that created the Organisation entity.",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
+            "pattern": "^[a-z0-9\\-]+$"
         },
         "updated_at": {
             "type": "string",
@@ -138,7 +152,8 @@
             "type": "string",
             "format": "uuid",
             "description": "The User that last updated the Organisation entity.",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
+            "pattern": "^[a-z0-9\\-]+$"
         }
     },
     "allOf": [
