@@ -35,29 +35,28 @@ The risk data standard consists of the following entities:
 ## JSON Schema
 ```
 {
-    "$schema": "http://json-schema.org/draft/2020-12/schema#",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "JSON Schema for an Organisation entities in MHCLG",
     "title": "Organisation",
     "type": "object",
     "required": [
         "id",
         "name",
         "type",
-        "status",
-        "created_at",
-        "updated_at",
-        "company_house_number",
+        "companies_house_reference_number",
         "charity_commission_number",
         "local_authority_code",
-        "address",
+        "primary_address",
         "telephone_number",
         "email_address",
-        "date_created"
+        "created_at",
+        "created_by"
     ],
     "properties": {
         "id": {
             "type": "string",
             "format": "uuid",
-            "description": "A system generated unique identifier for an organisation.",
+            "description": "A canonical name or identifier for the organisation which is a concatenation of a short form organisation type and its unique identifier (Company house id, charity id or LA number).",
             "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
             "pattern": "^[a-z0-9\\-]+$"
         },
@@ -79,28 +78,22 @@ The risk data standard consists of the following entities:
             "type": "string",
             "description": "The type of the organisation.",
             "enum": [
-                "Government Department",
-                "Local Authority",
-                "Private Sector",
-                "Non-Profit",
+                "Arms length body",
+                "Charity",
+                "Community group",
+                "Government department",
+                "Limited company",
+                "Local authority",
+                "Public limited companies",
                 "Other"
             ],
-            "example": "Government Department"
+            "example": "Government Department",
+            "default": "Local authority"
         },
-        "status": {
+        "companies_house_reference_number": {
             "type": "string",
-            "description": "The current status of the organisation.",
-            "enum": [
-                "Active",
-                "Inactive",
-                "Pending"
-            ],
-            "example": "Active"
-        },
-        "company_house_number": {
-            "type": "string",
-            "description": "A unique reference for the Organisation as registered at Company House.",
-            "example": "12345678",
+            "description": "A unique reference for the Organisation as registered at Companies House.",
+            "example": "01919863",
             "pattern": "^(?:\\d{8}|[A-Z]{2}\\d{6})$"
         },
         "charity_commission_number": {
@@ -120,7 +113,7 @@ The risk data standard consists of the following entities:
             "maxLength": 9,
             "pattern": "^[EJKLNMNSW][0-9]{8}$"
         },
-        "address": {
+        "primary_address": {
             "type": "string",
             "description": "The address of the Organisation.",
             "maxLength": 200,
@@ -254,6 +247,10 @@ Details of any reference data used within the Data fields above.
 
 | Reference data field | Options | Source | Description |
 |---------------|---------------|---------------|---------------|
+| Organisation Name | | [Companies House FAQs](https://ewf.companieshouse.gov.uk/help/en/stdwf/webIncHelp.html#:~:text=The%20company%20name%20cannot%20contain,not%20permitted%20in%20the%20name), [Incorporation and names - GOV.UK](https://www.gov.uk/government/publications/incorporation-and-names/incorporation-and-names) | |
+| Companies House reference number | | [Companies House Registration Number Formats](https://www.hmrc.gov.uk/gds/com/attachments/coy_reg_no_formats.doc) | |
+| Charity Commission number | | [Charity Commission Number](https://foodstandardsagency.github.io/enterprise-data-models/patterns/charity_commission_number.html) | |
+| Local Authority code | | [ONS](https://www.ons.gov.uk/methodology/geography/geographicalproducts/namescodesandlookups), [Local Authority Dataset - Planning](https://www.planning.data.gov.uk/dataset/local-authority), [Local Authority Names](https://github.com/mysociety/uk_local_authority_names_and_codes/blob/main/data/uk_local_authorities.csv) | |
 
 
 ## Useful links
