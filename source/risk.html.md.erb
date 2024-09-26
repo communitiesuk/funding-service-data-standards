@@ -1,6 +1,9 @@
 ---
 title: Risk
 weight: 15
+last_reviewed_on: 2024-09-26
+review_in: 6 months
+
 ---
 
 # Risk
@@ -36,7 +39,8 @@ The risk data standard consists of the following entities:
 ## JSON Schema
 ```
 {
-    "$schema": "http://json-schema.org/draft/2020-12/schema#",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "JSON Schema for an Risk entities in MHCLG Funding",
     "title": "Risk",
     "type": "object",
     "required": [
@@ -81,9 +85,10 @@ The risk data standard consists of the following entities:
         },
         "risk_description": {
             "type": "string",
-            "description": "The details of the risk that should cover - What (hypothetically) could go wrong? What could happen to cause things to go wrong? What would the outcome be if it did go wrong?",
+            "description": "The details of the risk that should cover:\n What (hypothetically) could go wrong?\n What could happen to cause things to go wrong?\n What would the outcome be if it did go wrong?\n Where possible, the structure of the risk should follow the guidelines of:\n 'There is a risk that x happens, due to/because of y, which will result in z.'",
             "maxLength": 5000,
-            "example": "There is a risk that our systems are compromised and we experiences data loss as a result of a successful cyber attack."
+            "example": "There is a risk that our systems are compromised and we experience data loss as a result of a successful cyber attack.",
+            "comment": "Should allow rich text formatting to allow links, bold, bullet points, headings and numbering"
         },
         "principal_risk_category": {
             "type": "string",
@@ -120,14 +125,14 @@ The risk data standard consists of the following entities:
         },
         "risk_owner": {
             "type": "string",
-            "description": "The User that is the owner for the risk, responsible for its overall management and reporting.",
+            "description": "The User that is the owner for the risk, responsible for its overall management and reporting.\n Note that the owner of the risk does not necessarily need to own mitigating actions associated with the risk as they may need to assign actions to others to assist with mitigation.\n Owners of risks generally follow the hierarchy of: Principal Risk Level - Director General, Portfolio Level – Director, Tier 1 Level – Deputy Director, Tier 2 and Project Level – Grade 6/7 above or below.",
             "format": "uuid",
             "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
             "pattern": "^[a-z0-9\\-]+$"
         },
         "risk_to_life": {
             "type": "boolean",
-            "description": "If there is a risk of avoidable deaths and/or serious injury in areas within our responsibility or stewardship, we need to record this within the risk.",
+            "description": "If there is a risk of avoidable deaths and/or serious injury in areas within our responsibility or stewardship, we need to record this within the risk.\n Risks to life will, in many cases, be of low likelihood (there are some notable exceptions), but it is important to identify them and any appropriate mitigations without waiting for the risk to transpire.",
             "example": false
         },
         "current_impact_score": {
@@ -156,13 +161,13 @@ The risk data standard consists of the following entities:
         },
         "current_mitigations": {
             "type": "string",
-            "description": "Detail any current mitigations already in place for the risk.",
+            "description": "Detail any current mitigations already in place for the risk. You can use the benefits of the mitigations to determine the risk's score as the mitigations are already in place to reduce the likelihood and/or impact of the risk.\n You may also include details of your overall risk mitigating strategy and assign any future mitigations actions if you need assistance from others.\n Future mitigating actions should be captured, providing a title, details of the action, priority, due date, owner, and frequency of updates needed",
             "maxLength": 2000,
             "example": "Implemented Microsoft Sentinel to act as central point for protective monitoring. Microsoft security Centre, Cloud App security are already in place."
         },
         "planned_mitigations": {
             "type": "string",
-            "description": "Detail any planned mitigations that will be in place for the risk.",
+            "description": "Detail any planned mitigations that will be in place for the risk.\n Assign future mitigations actions if you need assistance from others. Future mitigating actions captured, providing a title, details of the action, priority, due date, owner, and frequency of updates needed.",
             "maxLength": 2000,
             "example": "The environment is monitored by suppliers as part of the service level agreement. The long-term objectives are to onboard all third party/supplier logs to provide a centralised monitoring centre via Microsoft Sentinel."
         },
@@ -204,7 +209,7 @@ The risk data standard consists of the following entities:
         },
         "risk_approach": {
             "type": "string",
-            "description": "If the target score is lower than the current score then the Risk Owner may determine that additional mitigations need to be planned and implemented to reduce the current score to the target score. This would be the 'Treat' approach. If the Risk Owner decides they are content that no further mitigations or possible or necessary, this would be the 'Tolerate' approach.",
+            "description": "If the target score is lower than the current score then the Risk Owner may determine that additional mitigations need to be planned and implemented to reduce the current score to the target score.\n This would be the 'Treat' approach. If the Risk Owner decides they are content that no further mitigations or possible or necessary, this would be the 'Tolerate' approach.",
             "example": "Treat",
             "enum": [
                 "Treat",
@@ -269,8 +274,24 @@ The risk data standard consists of the following entities:
 ## Reference Data
 Details of any reference data used within the Data fields above.
 
-| Reference data field | Options | Source | Description |
-|---------------|---------------|---------------|---------------|
+| Reference data field | Source | Description |
+|---------------|---------------|---------------|
+| Risk Title | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Risk Description | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Risk Category | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Risk Owner | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Risk to Life | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Current Impact Score | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Current Likelihood Score | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Current Total Risk Score | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Current Mitigations | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Planned Mitigations | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Target Impact Score | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Target Likelihood Score | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Target Total Risk Score | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Proximity | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+| Risk Approach | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) | This field is mentioned in the Risk Management Toolkit - Risk Articulation document which states that the field is a key element in articulating risk |
+
 
 
 ## Useful links
@@ -279,3 +300,5 @@ This should contain a list of articles, assets or artefacts that went into the d
 | Useful links | Details |
 |--------------|---------|
 | [Risk Knowledge Centre](https://mhclg.sharepoint.com/sites/RiskKnowledgeCentre) | A ‘one-stop-shop’ for guidance and learning of all things risk related within MHCLG.|
+| [Risk Management Framework](https://mhclg.sharepoint.com.mcas.ms/sites/RiskKnowledgeCentre/SitePages/Risk-Management-Framework.aspx) | The Risk Management Framework sets out the Department's approach for managing risk.|
+| [Risk Management Toolkits](https://mhclg.sharepoint.com.mcas.ms/sites/RiskKnowledgeCentre/Risk%20Knowledge%20Centre%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FRiskKnowledgeCentre%2FRisk%20Knowledge%20Centre%20Documents%2FToolkits&p=true&ga=1) | List of Risk Management Toolkits, including the Articulation Toolkit which is refereced above.|
