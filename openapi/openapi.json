@@ -1,0 +1,821 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "0.0.1",
+        "title": "MHCLG Data Standards API",
+        "description": "WIP Dummy API docs for MHCLG Data Standards",
+        "license": {
+            "name": "MIT"
+        }
+    },
+    "paths": {
+        "/risks": {
+            "get": {
+                "summary": "List all risks",
+                "operationId": "listRisks",
+                "tags": [
+                    "risks"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "organisation_id",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "description": "The id of the Organisation to retrieve Risks for"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fund_id",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "description": "The id of the Fund to retrieve Risks for"
+                    },
+                    {
+                        "in": "query",
+                        "name": "programme_id",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "description": "The id of the Programme to retrieve Risks for"
+                    },
+                    {
+                        "in": "query",
+                        "name": "reporting_round",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "description": "The Reporting Round to retrieve Risks for"
+                    },
+                    {
+                        "in": "query",
+                        "name": "start_date",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "description": "The start date from which to retrieve Risks"
+                    },
+                    {
+                        "in": "query",
+                        "name": "end_date",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "description": "The end date from which to retrieve Risks"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sort",
+                        "description": "Sort order",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "description": "The number of items to skip before starting to collect the result set"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "description": "The numbers of items to return"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paged array of Risks",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Risks"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No Risks found"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorised",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Search for Risks based on certain criteria",
+                "operationId": "searchRisks",
+                "tags": [
+                    "risks"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RiskSearch"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "One or more account exist and are associated with the fund and round",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorised",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/risks/{riskId}": {
+            "get": {
+                "summary": "Info for a specific Risk",
+                "operationId": "showRiskById",
+                "tags": [
+                    "risks"
+                ],
+                "parameters": [
+                    {
+                        "name": "riskId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the Risk to retrieve",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Expected response to a valid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Risk"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/organisations": {
+            "get": {
+                "summary": "List all organisations",
+                "operationId": "listOrganisations",
+                "tags": [
+                    "organisation"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "sort",
+                        "description": "Sort order",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "description": "The number of items to skip before starting to collect the result set"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "description": "The numbers of items to return"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paged array of organisations",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Organisations"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No Organisations found"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorised",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/organisations/{organisationId}": {
+            "get": {
+                "summary": "Info for a specific Organisation",
+                "operationId": "showOrganisationById",
+                "tags": [
+                    "organisation"
+                ],
+                "parameters": [
+                    {
+                        "name": "organisationId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the Organisation to retrieve",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Expected response to a valid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Organisation"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Risk": {
+                "required": [
+                    "id",
+                    "organisation_id",
+                    "risk_title",
+                    "risk_description",
+                    "principal_risk_category",
+                    "risk_status",
+                    "risk_owner",
+                    "risk_to_life",
+                    "current_impact_score",
+                    "current_likelihood_score",
+                    "current_mitigations",
+                    "planned_mitigations",
+                    "target_impact_score",
+                    "target_likelihood_score",
+                    "date_created",
+                    "created_by"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "A system generated unique identifier for a Risk.",
+                        "example": "2358acb2-87be-4fc3-b38e-a184a0e0f359"
+                    },
+                    "organisation_id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "The id of the Organisation associated with the Risk.",
+                        "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968"
+                    },
+                    "risk_title": {
+                        "type": "string",
+                        "description": "The title of the Risk.",
+                        "example": "Not using data standards risks delaying the delivery of digital tools."
+                    },
+                    "risk_description": {
+                        "type": "string",
+                        "description": "A detailed description of the Risk.",
+                        "example": "There is a risk that our systems are compromised and we experience data loss as a result of a successful cyber attack."
+                    },
+                    "principal_risk_category": {
+                        "$ref": "#/components/schemas/RiskCategories"
+                    },
+                    "risk_status": {
+                        "$ref": "#/components/schemas/RiskStatus"
+                    },
+                    "risk_owner": {
+                        "type": "string",
+                        "description": "The owner of the Risk.",
+                        "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+                    },
+                    "risk_to_life": {
+                        "type": "boolean",
+                        "description": "Indicates if the Risk poses a threat to life.",
+                        "example": false
+                    },
+                    "current_impact_score": {
+                        "type": "integer",
+                        "description": "The current impact score of the Risk.",
+                        "maximum": 5
+                    },
+                    "current_likelihood_score": {
+                        "type": "integer",
+                        "description": "The current likelihood score of the Risk.",
+                        "maximum": 5
+                    },
+                    "current_total_risk_score": {
+                        "type": "integer",
+                        "description": "The current total risk score.",
+                        "maximum": 25
+                    },
+                    "current_mitigations": {
+                        "type": "string",
+                        "description": "Current mitigations in place for the Risk.",
+                        "example": "Include colleagues from across MHCLG in data standards work to ensure buy in and adoption."
+                    },
+                    "planned_mitigations": {
+                        "type": "string",
+                        "description": "Planned mitigations for the Risk.",
+                        "maxLength": 2000
+                    },
+                    "target_impact_score": {
+                        "type": "integer",
+                        "description": "The target impact score of the Risk.",
+                        "maximum": 5
+                    },
+                    "target_likelihood_score": {
+                        "type": "integer",
+                        "description": "The target likelihood score of the Risk.",
+                        "maximum": 5
+                    },
+                    "target_total_risk_score": {
+                        "type": "integer",
+                        "description": "The target total risk score.",
+                        "maximum": 25
+                    },
+                    "proximity": {
+                        "$ref": "#/components/schemas/RiskProximity"
+                    },
+                    "risk_approach": {
+                        "$ref": "#/components/schemas/RiskApproach"
+                    },
+                    "path_to_target": {
+                        "type": "boolean",
+                        "description": "Indicates if there is a path to the target score.",
+                        "example": true
+                    },
+                    "date_to_target": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "The date by which the target score should be achieved.",
+                        "example": "2022-12-31"
+                    },
+                    "date_created": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time when the Risk was created.",
+                        "example": "2024-01-31T23:59:59Z"
+                    },
+                    "created_by": {
+                        "type": "string",
+                        "description": "The user who created the Risk.",
+                        "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+                    },
+                    "date_updated": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time when the Risk was last updated.",
+                        "example": "2024-03-12T23:59:59Z"
+                    },
+                    "updated_by": {
+                        "type": "string",
+                        "description": "The user who last updated the Risk.",
+                        "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+                    },
+                    "date_closed": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time when the Risk was closed.",
+                        "example": "2024-04-12T23:59:59Z"
+                    },
+                    "closed_by": {
+                        "type": "string",
+                        "description": "The user who closed the Risk.",
+                        "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+                    }
+                }
+            },
+            "Risks": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Risk"
+                }
+            },
+            "RiskCategories": {
+                "type": "string",
+                "description": "The primary categorisation of risks as defined by the department",
+                "example": "Information and data",
+                "enum": [
+                    "Arms length bodies",
+                    "Commercial",
+                    "Financial",
+                    "Governance",
+                    "Information and data",
+                    "Legal",
+                    "Local Government delivery",
+                    "People",
+                    "Project delivery",
+                    "Resilience",
+                    "Security",
+                    "Strategy",
+                    "Systems and infrastructure"
+                ]
+            },
+            "RiskStatus": {
+                "type": "string",
+                "description": "Overall status of the risk",
+                "example": "Assessed",
+                "enum": [
+                    "New/Identified",
+                    "Assessed",
+                    "Controlled",
+                    "Escalated",
+                    "Watch",
+                    "Closed"
+                ]
+            },
+            "RiskScores": {
+                "type": "string",
+                "description": "The scoring of the risk",
+                "example": "1 - Very low",
+                "enum": [
+                    "1 - Very low",
+                    "2 - Low",
+                    "3 - Medium",
+                    "4 - High",
+                    "5 - Very high"
+                ]
+            },
+            "RiskProximity": {
+                "type": "string",
+                "description": "Determine the suitable timescale of the impact of this risk.",
+                "example": "3 to 12 months",
+                "enum": [
+                    "< 3 months",
+                    "3 to 12 months",
+                    "12 to 24 months",
+                    "24 to 36 months",
+                    "> 36 months"
+                ]
+            },
+            "RiskApproach": {
+                "type": "string",
+                "description": "If the target score is lower than the current score then the Risk Owner may determine that additional mitigations need to be planned and implemented to reduce the current score to the target score. This would be the 'Treat' approach. If the Risk Owner decides they are content that no further mitigations or possible or necessary, this would be the 'Tolerate' approach.",
+                "example": "Treat",
+                "enum": [
+                    "Treat",
+                    "Tolerate"
+                ]
+            },
+            "RiskParameters": {
+                "type": "string",
+                "description": "The parameters of the risk",
+                "example": "1 - Very low",
+                "enum": [
+                    "1 - Very low",
+                    "2 - Low",
+                    "3 - Medium",
+                    "4 - High",
+                    "5 - Very high"
+                ]
+            },
+            "RiskSearch": {
+                "type": "object",
+                "nullable": true,
+                "additionalProperties": false,
+                "properties": {
+                    "organisation_id": {
+                        "description": "Filter results to Risks that belong to ANY of these Organisations",
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "fund_id": {
+                        "description": "Filter results to Risks that belong to ANY of these Funds.",
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "programme_id": {
+                        "description": "Filter results to Risks that belong to ANY of these Programmes.",
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "start_date": {
+                        "description": "Filter results to accounts that have roles partially matching ANY of these values.",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "end_date": {
+                        "description": "Filter results to accounts that have roles partially matching ANY of these values.",
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "Error": {
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Organisation": {
+                "required": [
+                    "id",
+                    "organisation_name",
+                    "organisation_type",
+                    "address",
+                    "primary_contact",
+                    "date_created",
+                    "created_by"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "A system generated unique identifier for an Organisation.",
+                        "example": "2358acb2-87be-4fc3-b38e-a184a0e0f359"
+                    },
+                    "organisation_name": {
+                        "type": "string",
+                        "description": "The name of the Organisation.",
+                        "maxLength": 160,
+                        "example": "Barnet Council"
+                    },
+                    "organisation_type": {
+                        "$ref": "#/components/schemas/OrganisationType"
+                    },
+                    "companies_house_reference": {
+                        "type": "string",
+                        "maxLength": 8,
+                        "description": "A unique reference for the Organisation as registered at Company House.",
+                        "example": "12345678"
+                    },
+                    "charity_commission_number": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minLength": 7,
+                        "maxLength": 8,
+                        "description": "A unique reference for the organisation as registered at the Charity Commission.",
+                        "example": 876290123
+                    },
+                    "local_authority_code": {
+                        "type": "string",
+                        "description": "A unique reference for a local authority also known as the Government Statistical Service (GSS) local authority (LA) code.",
+                        "example": "E06000001"
+                    },
+                    "address": {
+                        "type": "string",
+                        "description": "The address of the Organisation.",
+                        "maxLength": 200,
+                        "example": "2 Bristol Avenue, Bristol, BS1 1AA"
+                    },
+                    "primary_contact": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "The primary contact for the Organisation.",
+                        "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+                    },
+                    "website": {
+                        "type": "string",
+                        "description": "The website of the Organisation.",
+                        "maxLength": 256,
+                        "example": "https://www.barnet.gov.uk/"
+                    },
+                    "telephone_number": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The telephone number of the Organisation.",
+                        "example": 2083592000,
+                        "maxLength": 15
+                    },
+                    "email_address": {
+                        "type": "string",
+                        "format": "email",
+                        "description": "The email address of the Organisation.",
+                        "maxLength": 254,
+                        "example": "info@organisation.com"
+                    },
+                    "date_created": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time when the organisation was created.",
+                        "example": "2024-01-31T23:59:59Z"
+                    },
+                    "created_by": {
+                        "type": "string",
+                        "description": "The user who created the Organisation.",
+                        "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+                    },
+                    "date_updated": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The date and time when the organisation was last updated.",
+                        "example": "2024-03-12T23:59:59Z"
+                    },
+                    "updated_by": {
+                        "type": "string",
+                        "description": "The user who last updated the Organisation.",
+                        "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47"
+                    }
+                }
+            },
+            "OrganisationType": {
+                "type": "string",
+                "description": "The type of organisation",
+                "example": "Local authority",
+                "default": "Local authority",
+                "enum": [
+                    "Charity",
+                    "Community group",
+                    "Limited company",
+                    "Local authority",
+                    "Combined authority",
+                    "Public limited companies",
+                    "Other"
+                ]
+            },
+            "Organisations": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Organisation"
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ]
+}

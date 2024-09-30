@@ -1,0 +1,260 @@
+---
+title: Organisation
+weight: 20
+---
+
+# Organisation
+### v0.1
+
+This data standard describes the information MHCLA collects about organisations, specifically for the purpose of funding
+
+- protect our people
+- protect our reputation
+- protect against financial loss
+- minimise disruption to the programmes which achieve our objectives
+
+## Status
+
+| Column header | Column header |
+|---------------|---------------|
+| The Funding Service SME | Lukas Dibben       |
+| Data Standard Owner (The Business) | n/a |
+| Status | In Progress |
+| Date | n/a |
+| Notes | n/a |
+
+
+## Data Entities
+
+The risk data standard consists of the following entities:
+
+- **Organisation** - the main data entity detailing Organisational information
+- **Person** - the main contact for the organisation
+- **Address** - the primary contact address
+
+## JSON Schema
+```
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "JSON Schema for an Organisation entities in MHCLG",
+    "title": "Organisation",
+    "type": "object",
+    "required": [
+        "id",
+        "name",
+        "type",
+        "companies_house_reference_number",
+        "charity_commission_number",
+        "local_authority_code",
+        "primary_address",
+        "telephone_number",
+        "email_address",
+        "created_at",
+        "created_by"
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A canonical name or identifier for the organisation which is a concatenation of a short form organisation type and its unique identifier (Company house id, charity id or LA number).",
+            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
+            "pattern": "^[a-z0-9\\-]+$"
+        },
+        "name": {
+            "type": "string",
+            "description": "The name of the organisation.",
+            "maxLength": 160,
+            "example": "Department for Levelling Up, Housing and Communities",
+            "pattern": "^[a-zA-Z0-9&£$¥#.,:;@\\- ]+$"
+        },
+        "alternative_name": {
+            "type": "string",
+            "description": "An alternative name of the organisation.",
+            "maxLength": 160,
+            "example": "Department for Levelling Up, Housing and Communities",
+            "pattern": "^[a-zA-Z0-9&£$¥#.,:;@\\- ]+$"
+        },
+        "type": {
+            "type": "string",
+            "description": "The type of the organisation.",
+            "enum": [
+                "Arms length body",
+                "Charity",
+                "Community group",
+                "Government department",
+                "Limited company",
+                "Local authority",
+                "Public limited companies",
+                "Other"
+            ],
+            "example": "Government Department",
+            "default": "Local authority"
+        },
+        "companies_house_reference_number": {
+            "type": "string",
+            "description": "A unique reference for the Organisation as registered at Companies House.",
+            "example": "01919863",
+            "pattern": "^(?:\\d{8}|[A-Z]{2}\\d{6})$"
+        },
+        "charity_commission_number": {
+            "type": "integer",
+            "format": "int32",
+            "minLength": 7,
+            "maxLength": 8,
+            "description": "A unique reference for the organisation as registered at the Charity Commission.",
+            "example": 87690123,
+            "pattern": "^(?:\\d{7,8}|\\d{6}-0?)$"
+        },
+        "local_authority_code": {
+            "type": "string",
+            "description": "A unique reference for a local authority also known as the Government Statistical Service (GSS) local authority (LA) code.",
+            "example": "E06000001",
+            "minLength": 9,
+            "maxLength": 9,
+            "pattern": "^[EJKLNMNSW][0-9]{8}$"
+        },
+        "primary_address": {
+            "type": "string",
+            "description": "The address of the Organisation.",
+            "maxLength": 200,
+            "example": "2 Bristol Avenue, Bristol, BS1 1AA"
+        },
+        "primary_contact": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The primary contact for the Organisation.",
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
+            "pattern": "^[a-z0-9\\-]+$"
+        },
+        "website": {
+            "type": "string",
+            "description": "The website of the Organisation.",
+            "maxLength": 256,
+            "example": "https://www.barnet.gov.uk/"
+        },
+        "telephone_number": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The telephone number of the Organisation.",
+            "example": "02083592000",
+            "maxLength": 15
+        },
+        "email_address": {
+            "type": "string",
+            "format": "email",
+            "description": "The email address of the Organisation.",
+            "maxLength": 254,
+            "example": "info@organisation.com"
+        },
+        "active_date": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the Organisation was founded.",
+            "example": "2024-01-31"
+        },
+        "retirement_date": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the Organisation ceased to trade or was merged with another entity.",
+            "example": "2024-01-31"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the Organisation entity was created.",
+            "example": "2024-01-31T23:59:59Z"
+        },
+        "created_by": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The User that created the Organisation entity.",
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
+            "pattern": "^[a-z0-9\\-]+$"
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the Organisation entity was last updated.",
+            "example": "2024-03-12T23:59:59Z"
+        },
+        "updated_by": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The User that last updated the Organisation entity.",
+            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
+            "pattern": "^[a-z0-9\\-]+$"
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "Private Sector"
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            },
+            "then": {
+                "required": [
+                    "company_house_number"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "Non-Profit"
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            },
+            "then": {
+                "required": [
+                    "charity_commission_number"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "type": {
+                        "const": "Local Authority"
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            },
+            "then": {
+                "required": [
+                    "local_authority_code"
+                ]
+            }
+        }
+    ]
+}
+```
+
+
+## Reference Data
+Details of any reference data used within the Data fields above.
+
+| Reference data field | Options | Source | Description |
+|---------------|---------------|---------------|---------------|
+| Organisation Name | | [Companies House FAQs](https://ewf.companieshouse.gov.uk/help/en/stdwf/webIncHelp.html#:~:text=The%20company%20name%20cannot%20contain,not%20permitted%20in%20the%20name), [Incorporation and names - GOV.UK](https://www.gov.uk/government/publications/incorporation-and-names/incorporation-and-names) | |
+| Companies House reference number | | [Companies House Registration Number Formats](https://www.hmrc.gov.uk/gds/com/attachments/coy_reg_no_formats.doc) | |
+| Charity Commission number | | [Charity Commission Number](https://foodstandardsagency.github.io/enterprise-data-models/patterns/charity_commission_number.html) | |
+| Local Authority code | | [ONS](https://www.ons.gov.uk/methodology/geography/geographicalproducts/namescodesandlookups), [Local Authority Dataset - Planning](https://www.planning.data.gov.uk/dataset/local-authority), [Local Authority Names](https://github.com/mysociety/uk_local_authority_names_and_codes/blob/main/data/uk_local_authorities.csv) | |
+
+
+## Useful links
+This should contain a list of articles, assets or artefacts that went into the drafting of the data standard. 
+
+| Useful links | Details |
+|--------------|---------|
