@@ -1,6 +1,8 @@
 ---
 title: Organisation
 weight: 20
+last_reviewed_on: 2024-09-26
+review_in: 6 months
 ---
 
 # Organisation
@@ -15,9 +17,9 @@ This data standard describes the information MHCLA collects about organisations,
 
 ## Status
 
-| Column header | Column header |
+| Attribute | Details |
 |---------------|---------------|
-| The Funding Service SME | Lukas Dibben       |
+| The Funding Service SME | Lukas Dibben |
 | Data Standard Owner (The Business) | n/a |
 | Status | In Progress |
 | Date | n/a |
@@ -26,11 +28,15 @@ This data standard describes the information MHCLA collects about organisations,
 
 ## Data Entities
 
-The risk data standard consists of the following entities:
+The organisation data standard consists of the following entities:
 
 - **Organisation** - the main data entity detailing Organisational information
 - **Person** - the main contact for the organisation
 - **Address** - the primary contact address
+
+![Organisation Entity Relationship Diagram](/images/organisation-ERD.png)
+> An Organisation entity relationship diagram showing the relationships between the Organisation, Address and Person entities, where Organisations should have one primary Address and one primary contact Person. In reality, a Person would also likely be linked to one or more Organisations in order to properly manage User permissions.
+
 
 ## JSON Schema
 ```
@@ -58,7 +64,8 @@ The risk data standard consists of the following entities:
             "format": "uuid",
             "description": "A canonical name or identifier for the organisation which is a concatenation of a short form organisation type and its unique identifier (Company house id, charity id or LA number).",
             "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
-            "pattern": "^[a-z0-9\\-]+$"
+            "pattern": "^[a-z0-9\\-]+$",
+            "readOnly": true
         },
         "name": {
             "type": "string",
@@ -78,13 +85,9 @@ The risk data standard consists of the following entities:
             "type": "string",
             "description": "The type of the organisation.",
             "enum": [
-                "Arms length body",
                 "Charity",
-                "Community group",
-                "Government department",
                 "Limited company",
                 "Local authority",
-                "Public limited companies",
                 "Other"
             ],
             "example": "Government Department",
@@ -128,7 +131,8 @@ The risk data standard consists of the following entities:
         },
         "website": {
             "type": "string",
-            "description": "The website of the Organisation.",
+            "format": "uri",
+            "description": "The url website of the organisation website.",
             "maxLength": 256,
             "example": "https://www.barnet.gov.uk/"
         },
@@ -137,7 +141,8 @@ The risk data standard consists of the following entities:
             "format": "int32",
             "description": "The telephone number of the Organisation.",
             "example": "02083592000",
-            "maxLength": 15
+            "maxLength": 15,
+            "pattern": "^[0-9+\\s\\(\\)-]+$"
         },
         "email_address": {
             "type": "string",
@@ -162,27 +167,31 @@ The risk data standard consists of the following entities:
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the Organisation entity was created.",
-            "example": "2024-01-31T23:59:59Z"
+            "example": "2024-01-31T23:59:59Z",
+            "readOnly": true
         },
         "created_by": {
             "type": "string",
             "format": "uuid",
             "description": "The User that created the Organisation entity.",
             "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
-            "pattern": "^[a-z0-9\\-]+$"
+            "pattern": "^[a-z0-9\\-]+$",
+            "readOnly": true
         },
         "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the Organisation entity was last updated.",
-            "example": "2024-03-12T23:59:59Z"
+            "example": "2024-03-12T23:59:59Z",
+            "readOnly": true
         },
         "updated_by": {
             "type": "string",
             "format": "uuid",
             "description": "The User that last updated the Organisation entity.",
             "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
-            "pattern": "^[a-z0-9\\-]+$"
+            "pattern": "^[a-z0-9\\-]+$",
+            "readOnly": true
         }
     },
     "allOf": [
@@ -190,7 +199,7 @@ The risk data standard consists of the following entities:
             "if": {
                 "properties": {
                     "type": {
-                        "const": "Private Sector"
+                        "const": "Limited company"
                     }
                 },
                 "required": [
@@ -207,7 +216,7 @@ The risk data standard consists of the following entities:
             "if": {
                 "properties": {
                     "type": {
-                        "const": "Non-Profit"
+                        "const": "Charity"
                     }
                 },
                 "required": [
@@ -224,7 +233,7 @@ The risk data standard consists of the following entities:
             "if": {
                 "properties": {
                     "type": {
-                        "const": "Local Authority"
+                        "const": "Local authority"
                     }
                 },
                 "required": [
@@ -243,18 +252,27 @@ The risk data standard consists of the following entities:
 
 
 ## Reference Data
-Details of any reference data used within the Data fields above.
+As shown in the schema above, where appropriate, organisations should include one of the following reference data fields when their organisation type matches the corresponding value.
 
-| Reference data field | Options | Source | Description |
-|---------------|---------------|---------------|---------------|
-| Organisation Name | | [Companies House FAQs](https://ewf.companieshouse.gov.uk/help/en/stdwf/webIncHelp.html#:~:text=The%20company%20name%20cannot%20contain,not%20permitted%20in%20the%20name), [Incorporation and names - GOV.UK](https://www.gov.uk/government/publications/incorporation-and-names/incorporation-and-names) | |
-| Companies House reference number | | [Companies House Registration Number Formats](https://www.hmrc.gov.uk/gds/com/attachments/coy_reg_no_formats.doc) | |
-| Charity Commission number | | [Charity Commission Number](https://foodstandardsagency.github.io/enterprise-data-models/patterns/charity_commission_number.html) | |
-| Local Authority code | | [ONS](https://www.ons.gov.uk/methodology/geography/geographicalproducts/namescodesandlookups), [Local Authority Dataset - Planning](https://www.planning.data.gov.uk/dataset/local-authority), [Local Authority Names](https://github.com/mysociety/uk_local_authority_names_and_codes/blob/main/data/uk_local_authorities.csv) | |
+Something about reference data, specifically LA CODE data, from Delta and how that's updated & sourced.
+
+| Reference data field | Source |
+|---------------|---------------|
+| Organisation Name | [Companies House FAQs](https://ewf.companieshouse.gov.uk/help/en/stdwf/webIncHelp.html#:~:text=The%20company%20name%20cannot%20contain,not%20permitted%20in%20the%20name), [Incorporation and names - GOV.UK](https://www.gov.uk/government/publications/incorporation-and-names/incorporation-and-names) |
+| Companies House reference number | [Companies House Registration Number Formats](https://www.hmrc.gov.uk/gds/com/attachments/coy_reg_no_formats.doc) |
+| Charity Commission number | [Charity Commission Number](https://foodstandardsagency.github.io/enterprise-data-models/patterns/charity_commission_number.html) |
+| Local Authority code | [ONS](https://www.ons.gov.uk/methodology/geography/geographicalproducts/namescodesandlookups), [Local Authority Dataset - Planning](https://www.planning.data.gov.uk/dataset/local-authority), [Local Authority Names](https://github.com/mysociety/uk_local_authority_names_and_codes/blob/main/data/uk_local_authorities.csv) |
 
 
-## Useful links
+<%# ## Useful links
 This should contain a list of articles, assets or artefacts that went into the drafting of the data standard. 
 
 | Useful links | Details |
-|--------------|---------|
+|--------------|---------| %>
+
+## Revision History
+
+| Revision | Reason | Date approved |
+|---------------|---------------|---------------|
+
+## Review date
