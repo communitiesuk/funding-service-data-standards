@@ -19,20 +19,42 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+# TODO: Change to use a Dockerfile to build an image which will install Ruby and dependencies for build step
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
       - name: Compile Markdown to HTML and create artifact
         run: |
           ./scripts/package.sh
+      
+      - name: List contents of docs directory
+        run: |
+          ls -la docs
+  
+      - name: List contents of root directory
+        run: |
+          ls -la
+
       - name: Upload artifact to be published
         uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
-          path: artifact.tar
+          path: ./artifact.tar
           retention-days: 1
 
   deploy:
