@@ -40,7 +40,7 @@ jobs:
 
       - name: Compile Markdown to HTML and create artifact
         run: |
-          ./scripts/package.sh
+          ENVIRONMENT=production ./scripts/package.sh
 
       - name: Upload artifact to be published
         uses: actions/upload-artifact@v4

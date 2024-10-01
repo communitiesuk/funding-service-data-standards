@@ -6,4 +6,7 @@ GovukTechDocs.configure(self)
 set :relative_links, true
 activate :relative_assets
 
-use OpenApiMiddleware
+# Determine the base path based on the environment variable
+base_path = ENV['BASE_PATH'] || ''
+
+use OpenApiMiddleware, base_path

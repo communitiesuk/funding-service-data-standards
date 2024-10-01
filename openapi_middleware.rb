@@ -1,10 +1,11 @@
 class OpenApiMiddleware
-  def initialize(app)
+  def initialize(app, base_path = '')
     @app = app
+    @base_path = base_path
   end
 
   def call(env)
-    if env['PATH_INFO'] == '/openapi.json'
+    if env['PATH_INFO'] == "#{@base_path}/openapi.json"
       serve_openapi_json
     else
       @app.call(env)
