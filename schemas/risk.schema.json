@@ -27,14 +27,16 @@
             "format": "uuid",
             "description": "A system generated unique identifier for a risk.",
             "example": "2358acb2-87be-4fc3-b38e-a184a0e0f359",
-            "pattern": "^[a-z0-9\\-]+$"
+            "pattern": "^[a-z0-9\\-]+$",
+            "readOnly": true
         },
         "organisation_id": {
             "type": "string",
             "format": "uuid",
             "description": "A system generated unique identifier for the Organisation that owns and has reported the risk.",
             "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
-            "pattern": "^[a-z0-9\\-]+$"
+            "pattern": "^[a-z0-9\\-]+$",
+            "readOnly": true
         },
         "risk_title": {
             "type": "string",
@@ -117,7 +119,8 @@
             "format": "int32",
             "example": 12,
             "minimum": 5,
-            "maximum": 25
+            "maximum": 25,
+            "readOnly": true
         },
         "current_mitigations": {
             "type": "string",
@@ -153,7 +156,8 @@
             "format": "int32",
             "example": 6,
             "minimum": 5,
-            "maximum": 25
+            "maximum": 25,
+            "readOnly": true
         },
         "proximity": {
             "type": "string",
@@ -191,40 +195,46 @@
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the Risk was created.",
-            "example": "2024-01-31T23:59:59Z"
+            "example": "2024-01-31T23:59:59Z",
+            "readOnly": true
         },
         "created_by": {
             "type": "string",
             "format": "uuid",
             "description": "The User that created the Risk entity.",
             "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
-            "pattern": "^[a-z0-9\\-]+$"
+            "pattern": "^[a-z0-9\\-]+$",
+            "readOnly": true
         },
         "updated_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the Risk entity was last updated.",
-            "example": "2024-03-12T23:59:59Z"
+            "example": "2024-03-12T23:59:59Z",
+            "readOnly": true
         },
         "updated_by": {
             "type": "string",
             "format": "uuid",
             "description": "The User that last updated the Risk entity.",
             "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
-            "pattern": "^[a-z0-9\\-]+$"
+            "pattern": "^[a-z0-9\\-]+$",
+            "readOnly": true
         },
         "closed_at": {
             "type": "string",
             "format": "date-time",
             "description": "The date and time when the Risk entity was closed.",
-            "example": "2024-04-12T23:59:59Z"
+            "example": "2024-04-12T23:59:59Z",
+            "readOnly": true
         },
         "closed_by": {
             "type": "string",
             "format": "uuid",
             "description": "The User that closed the Risk entity.",
             "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
-            "pattern": "^[a-z0-9\\-]+$"
+            "pattern": "^[a-z0-9\\-]+$",
+            "readOnly": true
         }
     }
 }
