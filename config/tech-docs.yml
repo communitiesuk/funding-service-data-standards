@@ -1,5 +1,5 @@
 # Host to use for canonical URL generation (without trailing slash)
-host: tbc
+host: https://communitiesuk.github.io/funding-service-data-standards
 
 # Header-related options
 show_govuk_logo: true
@@ -10,7 +10,7 @@ phase: Alpha
 # Links to show on right-hand-side of header
 header_links:
   Documentation: /
-  OpenAPI: /openapi.json
+  OpenAPI: https://editor.swagger.io/?url=https://communitiesuk.github.io/funding-service-data-standards/openapi/openapi.json
 
 # Enables search functionality. This indexes pages only and is not recommended for single-page sites.
 enable_search: false

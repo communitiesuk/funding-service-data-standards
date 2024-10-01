@@ -1,5 +1,5 @@
 class OpenApiMiddleware
-  def initialize(app, base_path = '')
+  def initialize(app, base_path)
     @app = app
     @base_path = base_path
   end

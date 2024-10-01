@@ -17,8 +17,6 @@ use OpenApiMiddleware, base_path
 after_build do |builder|
   src = File.join(root, './openapi/openapi.json')
   dst = File.join(root, config[:build_dir], 'openapi', 'openapi.json')
-  puts "Copying #{src} to #{dst}"  # Debug statement
-  puts "BUILDIR #{config[:build_dir]}"
   FileUtils.mkdir_p(File.dirname(dst))  # Ensure the destination directory exists
   FileUtils.cp(src, dst)  # Copy the file
 end
