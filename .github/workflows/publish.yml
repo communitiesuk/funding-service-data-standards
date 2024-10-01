@@ -41,17 +41,9 @@ jobs:
       - name: Compile Markdown to HTML and create artifact
         run: |
           ./scripts/package.sh
-      
-      - name: List contents of docs directory
-        run: |
-          ls -la docs
-  
-      - name: List contents of root directory
-        run: |
-          ls -la
 
       - name: Upload artifact to be published
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: github-pages
           path: ./artifact.tar
