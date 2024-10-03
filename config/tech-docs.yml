@@ -3,7 +3,7 @@ host: https://communitiesuk.github.io/funding-service-data-standards
 
 # Header-related options
 show_govuk_logo: true
-service_name: MHCLG Data Standards
+service_name: MHCLG Funding Data Standards
 # service_link: tbc
 phase: Alpha
 
