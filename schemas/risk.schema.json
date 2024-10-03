@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "JSON Schema for an Risk entities in MHCLG Funding",
+    "description": "JSON Schema for Risk entities in MHCLG Funding",
     "title": "Risk",
     "type": "object",
     "required": [
@@ -30,12 +30,10 @@
             "pattern": "^[a-z0-9\\-]+$",
             "readOnly": true
         },
-        "organisation_id": {
+        "organisation": {
             "type": "string",
-            "format": "uuid",
-            "description": "A system generated unique identifier for the Organisation that owns and has reported the risk.",
-            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
-            "pattern": "^[a-z0-9\\-]+$",
+            "$ref": "schemas/organisation.schema.json",
+            "description": "A reference to the Organisation that owns and has reported the risk.",
             "readOnly": true
         },
         "risk_title": {
@@ -86,11 +84,8 @@
             ]
         },
         "risk_owner": {
-            "type": "string",
-            "description": "The User that is the owner for the risk, responsible for its overall management and reporting.\n Note that the owner of the risk does not necessarily need to own mitigating actions associated with the risk as they may need to assign actions to others to assist with mitigation.\n Owners of risks generally follow the hierarchy of: Principal Risk Level - Director General, Portfolio Level – Director, Tier 1 Level – Deputy Director, Tier 2 and Project Level – Grade 6/7 above or below.",
-            "format": "uuid",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
-            "pattern": "^[a-z0-9\\-]+$"
+            "$ref": "schemas/user.schema.json",
+            "description": "A reference to the User that is the owner for the risk, responsible for its overall management and reporting.\n Note that the owner of the risk does not necessarily need to own mitigating actions associated with the risk as they may need to assign actions to others to assist with mitigation.\n Owners of risks generally follow the hierarchy of: Principal Risk Level - Director General, Portfolio Level – Director, Tier 1 Level – Deputy Director, Tier 2 and Project Level – Grade 6/7 above or below."
         },
         "risk_to_life": {
             "type": "boolean",
@@ -199,11 +194,8 @@
             "readOnly": true
         },
         "created_by": {
-            "type": "string",
-            "format": "uuid",
-            "description": "The User that created the Risk entity.",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
-            "pattern": "^[a-z0-9\\-]+$",
+            "$ref": "schemas/user.schema.json",
+            "description": "A reference to the User that created the Risk entity.",
             "readOnly": true
         },
         "updated_at": {
@@ -214,11 +206,8 @@
             "readOnly": true
         },
         "updated_by": {
-            "type": "string",
-            "format": "uuid",
-            "description": "The User that last updated the Risk entity.",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
-            "pattern": "^[a-z0-9\\-]+$",
+            "$ref": "schemas/user.schema.json",
+            "description": "A reference to the User that last updated the Risk entity.",
             "readOnly": true
         },
         "closed_at": {
@@ -229,11 +218,8 @@
             "readOnly": true
         },
         "closed_by": {
-            "type": "string",
-            "format": "uuid",
-            "description": "The User that closed the Risk entity.",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
-            "pattern": "^[a-z0-9\\-]+$",
+            "$ref": "schemas/user.schema.json",
+            "description": "A reference to the User that closed the Risk entity.",
             "readOnly": true
         }
     }

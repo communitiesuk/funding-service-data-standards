@@ -1,0 +1,72 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "JSON Schema for User entities in MHCLG",
+    "title": "User",
+    "type": "object",
+    "required": [
+        "id",
+        "uprn",
+        "last_name",
+        "organisation",
+        "role",
+        "created_at",
+        "created_by"
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A system generated unique identifier for an Address.",
+            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
+            "pattern": "^[a-z0-9\\-]+$",
+            "readOnly": true
+        },
+        "uprn": {
+            "type": "string",
+            "description": "The Unique Property Reference Number.",
+            "maxLength": 256,
+            "example": "Brian",
+            "pattern": "^[a-zA-ZÀ-ÖØ-öø-ÿ\\s\\-\\'^]+$"
+        },
+        "latitude": {
+            "type": "integer",
+            "format": "int32",
+            "description": "An alternative name of the organisation.",
+            "example": 47,
+            "minimum": -90,
+            "maximum": 90
+        },
+        "longitude": {
+            "type": "integer",
+            "format": "int32",
+            "description": "An alternative name of the organisation.",
+            "example": -47,
+            "minimum": -180,
+            "maximum": 180
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the Address entity was created.",
+            "example": "2024-01-31T23:59:59Z",
+            "readOnly": true
+        },
+        "created_by": {
+            "$ref": "schemas/user.schema.json",
+            "description": "The User that created the Address entity.",
+            "readOnly": true
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the Address entity was last updated.",
+            "example": "2024-03-12T23:59:59Z",
+            "readOnly": true
+        },
+        "updated_by": {
+            "$ref": "schemas/user.schema.json",
+            "description": "The User that last updated the Address entity.",
+            "readOnly": true
+        }
+    }
+}

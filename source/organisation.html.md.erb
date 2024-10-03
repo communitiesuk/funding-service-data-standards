@@ -42,7 +42,7 @@ The organisation data standard consists of the following entities:
 ```
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "JSON Schema for an Organisation entities in MHCLG",
+    "description": "JSON Schema for Organisation entities in MHCLG",
     "title": "Organisation",
     "type": "object",
     "required": [
@@ -117,17 +117,12 @@ The organisation data standard consists of the following entities:
             "pattern": "^[EJKLNMNSW][0-9]{8}$"
         },
         "primary_address": {
-            "type": "string",
-            "description": "The address of the Organisation.",
-            "maxLength": 200,
-            "example": "2 Bristol Avenue, Bristol, BS1 1AA"
+            "$ref": "schemas/user.schema.json",
+            "description": "A reference to the Address of the Organisation."
         },
         "primary_contact": {
-            "type": "string",
-            "format": "uuid",
-            "description": "The primary contact for the Organisation.",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
-            "pattern": "^[a-z0-9\\-]+$"
+            "$ref": "schemas/user.schema.json",
+            "description": "A reference to the User that is the primary contact for the Organisation."
         },
         "website": {
             "type": "string",
@@ -171,11 +166,8 @@ The organisation data standard consists of the following entities:
             "readOnly": true
         },
         "created_by": {
-            "type": "string",
-            "format": "uuid",
-            "description": "The User that created the Organisation entity.",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
-            "pattern": "^[a-z0-9\\-]+$",
+            "$ref": "schemas/user.schema.json",
+            "description": "A reference to the User that created the Organisation entity.",
             "readOnly": true
         },
         "updated_at": {
@@ -186,11 +178,8 @@ The organisation data standard consists of the following entities:
             "readOnly": true
         },
         "updated_by": {
-            "type": "string",
-            "format": "uuid",
-            "description": "The User that last updated the Organisation entity.",
-            "example": "f8aeeff6-6b83-11ef-ab51-325096b39f47",
-            "pattern": "^[a-z0-9\\-]+$",
+            "$ref": "schemas/user.schema.json",
+            "description": "A reference to the User that last updated the Organisation entity.",
             "readOnly": true
         }
     },
@@ -254,7 +243,7 @@ The organisation data standard consists of the following entities:
 ## Reference Data
 As shown in the schema above, where appropriate, organisations should include one of the following reference data fields when their organisation type matches the corresponding value.
 
-Something about reference data, specifically LA CODE data, from Delta and how that's updated & sourced.
+**TODO**: Something about reference data, specifically LA CODE data, from Delta and how that's updated & sourced.
 
 | Reference data field | Source |
 |---------------|---------------|
@@ -264,11 +253,11 @@ Something about reference data, specifically LA CODE data, from Delta and how th
 | Local Authority code | [ONS](https://www.ons.gov.uk/methodology/geography/geographicalproducts/namescodesandlookups), [Local Authority Dataset - Planning](https://www.planning.data.gov.uk/dataset/local-authority), [Local Authority Names](https://github.com/mysociety/uk_local_authority_names_and_codes/blob/main/data/uk_local_authorities.csv) |
 
 
-<%# ## Useful links
-This should contain a list of articles, assets or artefacts that went into the drafting of the data standard. 
+## Useful links
 
 | Useful links | Details |
-|--------------|---------| %>
+|--------------|---------|
+| [Referenced Schemas](/referenced_schemas.html) | Information on the additional entity schemas referenced in the JSON schema above |
 
 ## Revision History
 

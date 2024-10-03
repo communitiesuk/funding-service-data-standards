@@ -1,0 +1,206 @@
+---
+title: Referenced Schemas
+weight: 25
+last_reviewed_on: 2024-09-26
+review_in: 6 months
+
+---
+
+# Referenced Schemas
+
+The existing data standards ([Risk](/risk.html), [Organisation](/organisation.html)) reference a number of other smaller data entities within the schemas. These are detailed below.
+
+They are referenced as separate entities so as not to suggest implementation details, but to provide a clear understanding of the data model and relationships between entities. For example, if UUIDs are not currently used as the entity ID it wouldn't be helpful to suggest that should be the field referenced as a Foreign Key.
+
+
+## User
+
+```
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "JSON Schema for User entities in MHCLG",
+    "title": "User",
+    "type": "object",
+    "required": [
+        "id",
+        "first_name",
+        "last_name",
+        "organisation",
+        "role",
+        "created_at",
+        "created_by"
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A system generated unique identifier for a User.",
+            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
+            "pattern": "^[a-z0-9\\-]+$",
+            "readOnly": true
+        },
+        "first_name": {
+            "type": "string",
+            "description": "The first name of the individual.",
+            "maxLength": 256,
+            "example": "Brian",
+            "pattern": "^[a-zA-ZÀ-ÖØ-öø-ÿ\\s\\-\\'^]+$"
+        },
+        "last_name": {
+            "type": "string",
+            "description": "An alternative name of the organisation.",
+            "maxLength": 256,
+            "example": "Smith",
+            "pattern": "^[a-zA-ZÀ-ÖØ-öø-ÿ\\s\\-\\'^]+$"
+        },
+        "organisation": {
+            "$ref": "schemas/organisation.schema.json",
+            "description": "Reference to the organisation the individual works for."
+        },
+        "role": {
+            "type": "string",
+            "description": "The job title or position of the individual within an organisation.",
+            "maxLength": 256,
+            "example": "Section 151 Officer",
+            "pattern": "^[a-zA-Z0-9\\-]+$"
+        },
+        "email_address": {
+            "type": "string",
+            "format": "email",
+            "description": "The email address of the individual.",
+            "maxLength": 254,
+            "example": "brian.smith@organisation.com"
+        },
+        "telephone_number": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The mobile or work landline telephone number of the User.",
+            "example": "02083592000",
+            "maxLength": 15,
+            "pattern": "^[0-9+\\s\\(\\)-]+$"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the User entity was created.",
+            "example": "2024-01-31T23:59:59Z",
+            "readOnly": true
+        },
+        "created_by": {
+            "$ref": "schemas/user.schema.json",
+            "description": "The User that created the User entity.",
+            "readOnly": true
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the User entity was last updated.",
+            "example": "2024-03-12T23:59:59Z",
+            "readOnly": true
+        },
+        "updated_by": {
+            "$ref": "schemas/user.schema.json",
+            "description": "The User that last updated the User entity.",
+            "readOnly": true
+        }
+    },
+    "oneOf": [
+        {
+            "required": [
+                "email_address"
+            ]
+        },
+        {
+            "required": [
+                "telephone_number"
+            ]
+        }
+    ]
+}
+```
+
+
+## Address
+
+```
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "JSON Schema for User entities in MHCLG",
+    "title": "User",
+    "type": "object",
+    "required": [
+        "id",
+        "uprn",
+        "last_name",
+        "organisation",
+        "role",
+        "created_at",
+        "created_by"
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A system generated unique identifier for an Address.",
+            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
+            "pattern": "^[a-z0-9\\-]+$",
+            "readOnly": true
+        },
+        "uprn": {
+            "type": "string",
+            "description": "The Unique Property Reference Number.",
+            "maxLength": 256,
+            "example": "Brian",
+            "pattern": "^[a-zA-ZÀ-ÖØ-öø-ÿ\\s\\-\\'^]+$"
+        },
+        "latitude": {
+            "type": "integer",
+            "format": "int32",
+            "description": "An alternative name of the organisation.",
+            "example": 47,
+            "minimum": -90,
+            "maximum": 90
+        },
+        "longitude": {
+            "type": "integer",
+            "format": "int32",
+            "description": "An alternative name of the organisation.",
+            "example": -47,
+            "minimum": -180,
+            "maximum": 180
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the Address entity was created.",
+            "example": "2024-01-31T23:59:59Z",
+            "readOnly": true
+        },
+        "created_by": {
+            "$ref": "schemas/user.schema.json",
+            "description": "The User that created the Address entity.",
+            "readOnly": true
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the Address entity was last updated.",
+            "example": "2024-03-12T23:59:59Z",
+            "readOnly": true
+        },
+        "updated_by": {
+            "$ref": "schemas/user.schema.json",
+            "description": "The User that last updated the Address entity.",
+            "readOnly": true
+        }
+    }
+}
+```
+## Reference Data
+
+| Reference data field | Source |
+|---------------|---------------|
+| UPRN | [Land Registry Schema](https://landregistry.data.gov.uk/def/common/BS7666Address), [GOV.UK Address Information](https://www.gov.uk/government/publications/open-standards-for-government/identifying-property-and-street-information) |
+
+
+## Review date
