@@ -1,26 +1,28 @@
-# Technical Documentation
+# MHCLG Funding Data Standards Technical Documentation
+
+This project is an alpha/proof of concept site to publish the processes and technical documentation (including data standard schemas) for the Ministry of Housing, Community's and Local Government's (MHCLG) Funding Data Standards.
 
 This project uses the [Tech Docs Template][template], which is a [Middleman template][mmt] that you can use to build technical documentation using a GOV.UK style.
 
-You’re welcome to use the template even if your service isn’t considered part of GOV.UK, but your site or service must not:
+While the Tech Docs Template this site has been based on has now been archived, the documentation guidance is still available on their [GitHub Repo][tdt-docs], or a summarised guide has been [published by Mat Moore][tdt-guidance]. The [Tech Docs Ruby gem][gem] that controls the styling and rendering is still being updated and maintained, and is used by GOV.UK services for API and technical documentation, including:
 
-- identify itself as being part of GOV.UK
-- use the crown or GOV.UK logotype in the header
-- use the GDS Transport typeface
-- suggest that it’s an official UK government website if it’s not
-
-👉 To find out more about setting up and managing content for a website using this template, see the [Tech Docs Template documentation][tdt-docs].
+- [GOV.UK developer docs][govuk-dev-docs]
+- [GOV.UK Notify documentation][notify-docs]
+- [GOV.UK Pay documentation][pay-docs]
+- [GDS Way][gds-way]
+- [MoJ Cloud Platform User Guide][moj-docs]
+- [Content API documentation][content-api]
 
 ## Before you start
 
-To use the Tech Docs Template you need:
+To use this project, you need to install:
 
-- [Ruby][install-ruby]
+- [Ruby][install-ruby] (we'd suggest installing Ruby via [RBenv][install-rbenv] or [RVM][install-rvm])
 - [Middleman][install-middleman]
 
 ## Making changes
 
-To make changes to the documentation for the Tech Docs Template website, edit files in the `source` folder of this repository.
+To make changes to the documentation, edit files in the `source` folder of this repository.
 
 You can add content by editing the `.html.md.erb` files. These files support content in:
 
@@ -28,9 +30,11 @@ You can add content by editing the `.html.md.erb` files. These files support con
 - HTML
 - Ruby
 
-👉 You can use Markdown and HTML to [generate different content types][example-content] and [Ruby partials to manage content][partials].
+You can use Markdown and HTML to generate different content type. See the [guidance published by Mat Moore][tdt-guidance-write] for more specifics on adding styling in Markdown and HTML.
 
-👉 Learn more about [producing more complex page structures][multipage] for your website.
+You can structure the site pages using subfolders and `index.html.md.erb` files in their roots.
+
+You can change the site config by editing the `config/tech-docs.yml` file.
 
 ## Preview your changes locally
 
@@ -40,7 +44,7 @@ To preview your new website locally, navigate to your project folder and run:
 bundle exec middleman server
 ```
 
-👉 See the generated website on `http://localhost:4567` in your browser. Any content changes you make to your website will be updated in real time.
+See the generated website on `http://localhost:4567` in your browser. Any content changes you make to your website will be updated in real time.
 
 To shut down the Middleman instance running on your machine, use `ctrl+C`.
 
@@ -56,6 +60,10 @@ bundle exec middleman build
 
 Every time you run this command, the `build` folder gets generated from scratch. This means any changes to the `build` folder that are not part of the build command will get overwritten.
 
+## Publish
+
+Merges to the `main` branch on the [Funding Service Data Standards][ds-repo] will trigger a [GitHub workflow][gh-workflow] which will build the HTML pages, compile them into a tar artifact and deploy this to GitHub pages.
+
 ## Troubleshooting
 
 Run `bundle update` to make sure you're using the most recent Ruby gem versions.
@@ -64,22 +72,29 @@ Run `bundle exec middleman build --verbose` to get detailed error messages to he
 
 ## Licence
 
-Unless stated otherwise, the codebase is released under [the MIT License][mit].
+The codebase is released under [the MIT License][licence].
 This covers both the codebase and any sample code in the documentation.
 
 The documentation is [© Crown copyright][copyright] and available under the terms of the [Open Government 3.0][ogl] licence.
 
-[mit]: LICENCE
+[licence]: https://github.com/communitiesuk/funding-service-data-standards/blob/main/LICENSE
 [copyright]: http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/
 [ogl]: http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
 [mmt]: https://middlemanapp.com/advanced/project_templates/
-[tdt-docs]: https://tdt-documentation.london.cloudapps.digital
-[config]: https://tdt-documentation.london.cloudapps.digital/configuration-options.html#configuration-options
-[frontmatter]: https://tdt-documentation.london.cloudapps.digital/frontmatter.html#frontmatter
-[multipage]: https://tdt-documentation.london.cloudapps.digital/multipage.html#build-a-multipage-site
-[example-content]: https://tdt-documentation.london.cloudapps.digital/content.html#content-examples
-[partials]: https://tdt-documentation.london.cloudapps.digital/single_page.html#add-partial-lines
-[install-ruby]: https://tdt-documentation.london.cloudapps.digital/create_project/get_started/#install-ruby
-[install-middleman]: https://tdt-documentation.london.cloudapps.digital/create_project/get_started/#install-middleman
+[install-ruby]: https://www.ruby-lang.org/en/
+[install-rbenv]: https://github.com/rbenv/rbenv
+[install-rvm]: https://rvm.io/
+[install-middleman]: https://middlemanapp.com/basics/install/
 [gem]: https://github.com/alphagov/tech-docs-gem
+[tdt-docs]: https://github.com/alphagov/tdt-documentation/tree/main/source
+[tdt-guidance]: https://matmoore.github.io/tdt-documentation/index.html
+[tdt-guidance-write]: https://matmoore.github.io/tdt-documentation/write_docs/content/index.html
 [template]: https://github.com/alphagov/tech-docs-template
+[ds-repo]: https://github.com/communitiesuk/funding-service-data-standards
+[gh-workflow]: https://github.com/communitiesuk/funding-service-data-standards/blob/main/.github/workflows/publish.yml
+[content-api]: https://content-api.publishing.service.gov.uk/
+[govuk-dev-docs]: https://docs.publishing.service.gov.uk/
+[notify-docs]: https://docs.notifications.service.gov.uk/
+[pay-docs]: https://docs.payments.service.gov.uk/
+[moj-docs]: https://user-guide.cloud-platform.service.justice.gov.uk/
+[gds-way]: https://gds-way.digital.cabinet-office.gov.uk/
