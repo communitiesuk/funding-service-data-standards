@@ -52,8 +52,6 @@ The risk data standard consists of the following entities:
         "risk_description",
         "principal_risk_category",
         "risk_status",
-        "risk_owner",
-        "risk_to_life",
         "current_impact_score",
         "current_likelihood_score",
         "current_mitigations",
@@ -82,7 +80,7 @@ The risk data standard consists of the following entities:
             "type": "string",
             "description": "A short description of the risk.",
             "maxLength": 100,
-            "example": "There is a risk that our systems are compromised and the Ministry of Housing, Communities and Local Government (MHCLG) experiences data loss as a result of a successful cyber attack.",
+            "example": "Cyber attack",
             "pattern": "^[a-zA-Z0-9!£%():;@?`\\- ]+$"
         },
         "risk_description": {
@@ -94,7 +92,7 @@ The risk data standard consists of the following entities:
         },
         "principal_risk_category": {
             "type": "string",
-            "description": "The primary categorisation of risks as defined by the department",
+            "description": "The primary categorisation of risks as defined by the department.",
             "example": "Information and data",
             "enum": [
                 "Arms length bodies",
@@ -114,7 +112,7 @@ The risk data standard consists of the following entities:
         },
         "risk_status": {
             "type": "string",
-            "description": "Overall status of the risk",
+            "description": "Overall status of the risk.",
             "example": "Assessed",
             "enum": [
                 "New/Identified",
@@ -264,6 +262,17 @@ The risk data standard consists of the following entities:
             "description": "A reference to the User that closed the Risk entity.",
             "readOnly": true
         }
+    },
+    "dependentRequired": {
+        "created_at": [
+            "created_by"
+        ],
+        "updated_at": [
+            "updated_by"
+        ],
+        "closed_at": [
+            "closed_by"
+        ]
     }
 }
 ```
@@ -291,6 +300,12 @@ The below fields are mentioned in the [Risk Management Toolkit - Risk Articulati
 | Risk Approach | [Risk Management Toolkit - Risk Articulation](https://mhclg.sharepoint.com/:b:/s/RiskKnowledgeCentre/EVuJE5ZJ4mVCmwDcuh06mQUBVIARHfp5DrlUed9QgPlGZw?e=bBULhW) |
 
 
+## Implementation guidance
+| Data field | Guidance |
+|------------|----------|
+| Fields marked `"readOnly": true` | These fields are marked `readOnly` to indicate that they should be determined by application or database logic rather than user input. |
+| Organisation | The JSON schema suggests that there should be a direct link between `Risk` and `Organisation` but this isn't necessarily the case, as long as the data model allows a `Risk` to be traced back to the `Organisation` which owns it. |
+
 ## Useful links
 
 | Useful links | Details |
@@ -299,7 +314,6 @@ The below fields are mentioned in the [Risk Management Toolkit - Risk Articulati
 | [Risk Management Framework](https://mhclg.sharepoint.com.mcas.ms/sites/RiskKnowledgeCentre/SitePages/Risk-Management-Framework.aspx) | The Risk Management Framework sets out the Department's approach for managing risk.|
 | [Risk Management Toolkits](https://mhclg.sharepoint.com.mcas.ms/sites/RiskKnowledgeCentre/Risk%20Knowledge%20Centre%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FRiskKnowledgeCentre%2FRisk%20Knowledge%20Centre%20Documents%2FToolkits&p=true&ga=1) | List of Risk Management Toolkits, including the Articulation Toolkit which is refereced above.|
 | [Referenced Schemas](/referenced_schemas.html) | Information on the additional entity schemas referenced in the JSON schema above |
-
 
 
 ## Revision History

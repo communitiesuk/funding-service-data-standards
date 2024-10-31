@@ -10,8 +10,6 @@
         "risk_description",
         "principal_risk_category",
         "risk_status",
-        "risk_owner",
-        "risk_to_life",
         "current_impact_score",
         "current_likelihood_score",
         "current_mitigations",
@@ -40,7 +38,7 @@
             "type": "string",
             "description": "A short description of the risk.",
             "maxLength": 100,
-            "example": "There is a risk that our systems are compromised and the Ministry of Housing, Communities and Local Government (MHCLG) experiences data loss as a result of a successful cyber attack.",
+            "example": "Cyber attack",
             "pattern": "^[a-zA-Z0-9!£%():;@?`\\- ]+$"
         },
         "risk_description": {
@@ -52,7 +50,7 @@
         },
         "principal_risk_category": {
             "type": "string",
-            "description": "The primary categorisation of risks as defined by the department",
+            "description": "The primary categorisation of risks as defined by the department.",
             "example": "Information and data",
             "enum": [
                 "Arms length bodies",
@@ -72,7 +70,7 @@
         },
         "risk_status": {
             "type": "string",
-            "description": "Overall status of the risk",
+            "description": "Overall status of the risk.",
             "example": "Assessed",
             "enum": [
                 "New/Identified",
@@ -222,5 +220,16 @@
             "description": "A reference to the User that closed the Risk entity.",
             "readOnly": true
         }
+    },
+    "dependentRequired": {
+        "created_at": [
+            "created_by"
+        ],
+        "updated_at": [
+            "updated_by"
+        ],
+        "closed_at": [
+            "closed_by"
+        ]
     }
 }
