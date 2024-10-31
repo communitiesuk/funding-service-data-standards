@@ -19,15 +19,13 @@
     "properties": {
         "id": {
             "type": "string",
-            "format": "uuid",
-            "description": "A canonical name or identifier for the organisation which is a concatenation of a short form organisation type and its unique identifier (Company house id, charity id or LA number).",
-            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
-            "pattern": "^[a-z0-9\\-]+$",
+            "description": "A canonical name or identifier for the organisation. Still some discussion on whether this should be a concatenation of a short form organisation type and its unique identifier (Company house id, charity id or LA number) or a unique id/uuid.",
+            "example": "uuid eg. 0191986d-a0a0-7a51-8fd3-390d8f23d968 or concatenation eg. LA-E06000001",
             "readOnly": true
         },
         "name": {
             "type": "string",
-            "description": "The name of the organisation.",
+            "description": "The name of the organisation. If the organisation is known by more than one name then this should refer to the most common name or the name as registered at Companies House, Charities Commission etc.",
             "maxLength": 160,
             "example": "Department for Levelling Up, Housing and Communities",
             "pattern": "^[a-zA-Z0-9&£$¥#.,:;@\\- ]+$"
@@ -140,6 +138,14 @@
             "description": "A reference to the User that last updated the Organisation entity.",
             "readOnly": true
         }
+    },
+    "dependentRequired": {
+        "created_at": [
+            "created_by"
+        ],
+        "updated_at": [
+            "updated_by"
+        ]
     },
     "allOf": [
         {

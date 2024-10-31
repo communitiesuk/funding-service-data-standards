@@ -36,7 +36,6 @@ The organisation data standard consists of the following entities:
 ![Organisation Entity Relationship Diagram](/images/organisation-ERD.png)
 > An Organisation entity relationship diagram showing the relationships between the Organisation, Address and Person entities, where Organisations should have one primary Address and one primary contact Person. In reality, a Person would also likely be linked to one or more Organisations in order to properly manage User permissions.
 
-
 ## JSON Schema
 ```
 {
@@ -60,15 +59,13 @@ The organisation data standard consists of the following entities:
     "properties": {
         "id": {
             "type": "string",
-            "format": "uuid",
-            "description": "A canonical name or identifier for the organisation which is a concatenation of a short form organisation type and its unique identifier (Company house id, charity id or LA number).",
-            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
-            "pattern": "^[a-z0-9\\-]+$",
+            "description": "A canonical name or identifier for the organisation. Still some discussion on whether this should be a concatenation of a short form organisation type and its unique identifier (Company house id, charity id or LA number) or a unique id/uuid.",
+            "example": "uuid eg. 0191986d-a0a0-7a51-8fd3-390d8f23d968 or concatenation eg. LA-E06000001",
             "readOnly": true
         },
         "name": {
             "type": "string",
-            "description": "The name of the organisation.",
+            "description": "The name of the organisation. If the organisation is known by more than one name then this should refer to the most common name or the name as registered at Companies House, Charities Commission etc.",
             "maxLength": 160,
             "example": "Department for Levelling Up, Housing and Communities",
             "pattern": "^[a-zA-Z0-9&£$¥#.,:;@\\- ]+$"
@@ -182,6 +179,14 @@ The organisation data standard consists of the following entities:
             "readOnly": true
         }
     },
+    "dependentRequired": {
+        "created_at": [
+            "created_by"
+        ],
+        "updated_at": [
+            "updated_by"
+        ]
+    },
     "allOf": [
         {
             "if": {
@@ -242,14 +247,16 @@ The organisation data standard consists of the following entities:
 ## Reference Data
 As shown in the schema above, where appropriate, organisations should include one of the following reference data fields when their organisation type matches the corresponding value.
 
-**TODO**: Something about reference data, specifically LA CODE data, from Delta and how that's updated & sourced.
-
 | Reference data field | Source |
 |---------------|---------------|
 | Organisation Name | [Companies House FAQs](https://ewf.companieshouse.gov.uk/help/en/stdwf/webIncHelp.html#:~:text=The%20company%20name%20cannot%20contain,not%20permitted%20in%20the%20name), [Incorporation and names - GOV.UK](https://www.gov.uk/government/publications/incorporation-and-names/incorporation-and-names) |
 | Companies House reference number | [Companies House Registration Number Formats](https://www.hmrc.gov.uk/gds/com/attachments/coy_reg_no_formats.doc) |
 | Charity Commission number | [Charity Commission Number](https://foodstandardsagency.github.io/enterprise-data-models/patterns/charity_commission_number.html) |
 | Local Authority code | [ONS](https://www.ons.gov.uk/methodology/geography/geographicalproducts/namescodesandlookups), [Local Authority Dataset - Planning](https://www.planning.data.gov.uk/dataset/local-authority), [Local Authority Names](https://github.com/mysociety/uk_local_authority_names_and_codes/blob/main/data/uk_local_authorities.csv) |
+
+There are a number of potential sources for Local Authority code (direct from ONS, via the MHCLG Planning dataset (though this only covers LAs in England), and Delta (which is based on the ONS data but updated manually ahead of the regular ONS publishing dates.
+
+The consensus is that Funding Service will use the LA codes from Delta as the source of truth for Local Authority codes.
 
 
 ## Useful links
