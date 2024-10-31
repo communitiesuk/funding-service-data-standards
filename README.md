@@ -36,6 +36,12 @@ You can structure the site pages using subfolders and `index.html.md.erb` files 
 
 You can change the site config by editing the `config/tech-docs.yml` file.
 
+## Updating JSON Schemas
+
+Each data standard page has a JSON schema section so that implementers and stakeholders can see the full list of data points being collected, their data types, suggested validation rules and how the data standards are linked.
+
+For developer ease (syntax checks etc.) the schemas and any referenced schemas which are not part of a main data standard are saved as JSON schema files in the `schemas` folder. They should be updated here and then the full schema can be copied to the relevant data standard or referenced schema page to ensure they remain consistent.
+
 ## Preview your changes locally
 
 To preview your new website locally, navigate to your project folder and run:
@@ -54,7 +60,7 @@ If you make changes to the `config/tech-docs.yml` configuration file, you need t
 
 To build the HTML pages from content in your `source` folder, run:
 
-```
+```sh
 bundle exec middleman build
 ```
 
