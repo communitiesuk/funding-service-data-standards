@@ -10,3 +10,6 @@ gem 'tzinfo-data', platforms: [:mswin, :mingw, :x64_mingw, :jruby]
 
 # Include the tech docs gem
 gem 'govuk_tech_docs'
+
+# Specify ruby version
+ruby file: ".ruby-version"
