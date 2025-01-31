@@ -13,3 +13,5 @@ gem 'govuk_tech_docs'
 
 # Specify ruby version
 ruby file: ".ruby-version"
+
+gem 'concurrent-ruby', '1.3.4'
