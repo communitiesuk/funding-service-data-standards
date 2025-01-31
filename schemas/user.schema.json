@@ -5,8 +5,7 @@
     "type": "object",
     "required": [
         "id",
-        "first_name",
-        "last_name",
+        "full_name",
         "organisation",
         "role",
         "created_at",
@@ -21,18 +20,11 @@
             "pattern": "^[a-z0-9\\-]+$",
             "readOnly": true
         },
-        "first_name": {
+        "full_name": {
             "type": "string",
-            "description": "The first name of the individual.",
+            "description": "The full name of the individual.",
             "maxLength": 256,
-            "example": "Brian",
-            "pattern": "^[a-zA-ZÀ-ÖØ-öø-ÿ\\s\\-\\'^]+$"
-        },
-        "last_name": {
-            "type": "string",
-            "description": "An alternative name of the organisation.",
-            "maxLength": 256,
-            "example": "Smith",
+            "example": "Brian Smith",
             "pattern": "^[a-zA-ZÀ-ÖØ-öø-ÿ\\s\\-\\'^]+$"
         },
         "organisation": {

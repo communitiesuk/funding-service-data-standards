@@ -7,10 +7,7 @@
         "id",
         "name",
         "type",
-        "companies_house_reference_number",
-        "charity_commission_number",
-        "local_authority_code",
-        "primary_address",
+        "address",
         "telephone_number",
         "email_address",
         "created_at",
@@ -19,8 +16,9 @@
     "properties": {
         "id": {
             "type": "string",
-            "description": "A canonical name or identifier for the organisation. Still some discussion on whether this should be a concatenation of a short form organisation type and its unique identifier (Company house id, charity id or LA number) or a unique id/uuid.",
-            "example": "uuid eg. 0191986d-a0a0-7a51-8fd3-390d8f23d968 or concatenation eg. LA-E06000001",
+            "description": "A canonical name or identifier for the organisation which is a concatenation of a short form organisation type and its unique identifier (Company house id, charity id or LA number).",
+            "example": "",
+            "pattern": "^[a-z0-9\\-]+$",
             "readOnly": true
         },
         "name": {
@@ -49,30 +47,7 @@
             "example": "Government Department",
             "default": "Local authority"
         },
-        "companies_house_reference_number": {
-            "type": "string",
-            "description": "A unique reference for the Organisation as registered at Companies House.",
-            "example": "01919863",
-            "pattern": "^(?:\\d{8}|[A-Z]{2}\\d{6})$"
-        },
-        "charity_commission_number": {
-            "type": "integer",
-            "format": "int32",
-            "minLength": 7,
-            "maxLength": 8,
-            "description": "A unique reference for the organisation as registered at the Charity Commission.",
-            "example": 87690123,
-            "pattern": "^(?:\\d{7,8}|\\d{6}-0?)$"
-        },
-        "local_authority_code": {
-            "type": "string",
-            "description": "A unique reference for a local authority also known as the Government Statistical Service (GSS) local authority (LA) code.",
-            "example": "E06000001",
-            "minLength": 9,
-            "maxLength": 9,
-            "pattern": "^[EJKLNMNSW][0-9]{8}$"
-        },
-        "primary_address": {
+        "address": {
             "$ref": "schemas/user.schema.json",
             "description": "A reference to the Address of the Organisation."
         },
@@ -138,66 +113,5 @@
             "description": "A reference to the User that last updated the Organisation entity.",
             "readOnly": true
         }
-    },
-    "dependentRequired": {
-        "created_at": [
-            "created_by"
-        ],
-        "updated_at": [
-            "updated_by"
-        ]
-    },
-    "allOf": [
-        {
-            "if": {
-                "properties": {
-                    "type": {
-                        "const": "Limited company"
-                    }
-                },
-                "required": [
-                    "type"
-                ]
-            },
-            "then": {
-                "required": [
-                    "company_house_number"
-                ]
-            }
-        },
-        {
-            "if": {
-                "properties": {
-                    "type": {
-                        "const": "Charity"
-                    }
-                },
-                "required": [
-                    "type"
-                ]
-            },
-            "then": {
-                "required": [
-                    "charity_commission_number"
-                ]
-            }
-        },
-        {
-            "if": {
-                "properties": {
-                    "type": {
-                        "const": "Local authority"
-                    }
-                },
-                "required": [
-                    "type"
-                ]
-            },
-            "then": {
-                "required": [
-                    "local_authority_code"
-                ]
-            }
-        }
-    ]
+    }
 }
