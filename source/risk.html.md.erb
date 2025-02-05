@@ -7,7 +7,7 @@ review_in: 6 months
 ---
 
 # Risk
-### v0.2
+### v0.3
 
 This data standard represents how risks are recorded with MHCLG. This aligns to the MHCLG’s [Risk Management Framework](https://mhclg.sharepoint.com/sites/RiskKnowledgeCentre/SitePages/Risk-Management-Framework.aspx) which sets out the Departments approach to managing risk in order to:
 
@@ -30,16 +30,28 @@ This data standard represents how risks are recorded with MHCLG. This aligns to 
 
 These are the standards in risk:  
 
-**Risk ID**  
-This is a unique identifier of a risk. It is automatically generated.  
+### Risk ID  
+This is a unique identifier of a risk.  
+This standard is automatically generated and the data provider does not need to enter this information.  
 
-**Organisation ID**  
-This is a unique identifier of the organisation that owns and has reported the risk. It is automatically generated.  
+Data type: UUID  
+Format: Version 7 UUID  
 
-**Risk title**  
-A short description of the risk in fewer than 100 characters.   
+### Organisation ID  
+This is a unique identifier of the organisation that owns and has reported the risk.  
+This standard is automatically generated and the data provider does not need to enter this information.  
 
-**Risk description**  
+Data type: String  
+Format: Plain text 
+
+### Risk title  
+A short description of the risk in fewer than 100 characters.  
+Special characters accepted: ! £ % ( ) : ; @ ? -  
+
+Data type: String  
+Format: Alphanumeric 
+
+### Risk description  
 A description of the risk that includes:  
 
 - what could go wrong?  
@@ -50,10 +62,16 @@ Where possible, the risk description should be formatted like this:
 There is a risk that x happens, due to y, which will result in z.  
 This field should be fewer than 5,000 characters.  
 
-**Principle risk category**  
-This is the category of risk. It must be one of the following options:  
+Data type: String  
+Format: Plain text  
 
-- Arms length bodies  
+### Principle risk category  
+This is the category of risk.  
+
+Data type: Options list  
+Format: It must be one of the following options:  
+
+- Arm's length bodies  
 - Commercial  
 - Financial  
 - Governance  
@@ -67,8 +85,12 @@ This is the category of risk. It must be one of the following options:
 - Strategy  
 - Systems and infrastructure  
 
-**Risk status**  
-This is the overall status of the risk. It must be one of the following:  
+
+### Risk status    
+This is the overall status of the risk.  
+
+Data type: Options list  
+Format: It must be one of the following:  
 
 - New/Identified  
 - Assessed  
@@ -77,14 +99,23 @@ This is the overall status of the risk. It must be one of the following:
 - Watch  
 - Closed  
 
-**Risk owner**  
-This should be a person who is responsible for the overall management and reporting of a risk. Owners of risks are generally: Principal Risk Level: Director General, Portfolio Level: Director, Tier 1 Level: Deputy Director, Tier 2 and Project Level: Grade 6/7.
+### Risk owner  
+This should be a person who is responsible for the overall management and reporting of a risk. Owners of risks are generally: Principal Risk Level: Director General, Portfolio Level: Director, Tier 1 Level: Deputy Director, Tier 2 and Project Level: Grade 6/7.  
 
-**Risk to life**  
-Ask if there is risk to life, and record yes or no. 
+Data type: Person  
+Format: Follow the standard for a person  
 
-**Current impact score**  
-This should show the impact of the risk. It must be one of these options:  
+### Risk to life  
+Ask if there is risk to life, and record yes or no.  
+
+Data type: Boolean  
+Format: Yes or No
+
+### Current impact score  
+This should show the impact of the risk.  
+
+Data type: Options list  
+Format: It must be one of these options:  
 
 - 1 - Very low  
 - 2 - Low  
@@ -92,8 +123,11 @@ This should show the impact of the risk. It must be one of these options:
 - 4 - High  
 - 5 - Very high  
 
-**Current likelihood score**  
-How likely a risk is to happen. It must be one of these options:  
+### Current likelihood score  
+How likely a risk is to happen.  
+
+Data type: Options list  
+Format: It must be one of these options:  
 
 - 1 - Very low  
 - 2 - Low  
@@ -101,17 +135,30 @@ How likely a risk is to happen. It must be one of these options:
 - 4 - High  
 - 5 - Very high  
 
-**Current total risk score**  
-This is a calculated value that shows how severe the risk is. It is created by multiplying current impact score by current likelihood score. It must be a whole number.
+### Current total risk score  
+This is a calculated value that shows how severe the risk is. It is created by multiplying current impact score by current likelihood score. It must be a whole number.  
+It is automatically generated and the data provider does not need to enter this information.  
 
-**Current mitigations**  
-These are any current mitigations already in place for the risk, and can include an overall risk mitigating strategy. It must be plain text and fewer than 2000 characters.
+Data type: Calculated  
+Format: Integer  
 
-**Planned mitigations**  
-Any planned mitigations that will be in place. They can be assigned to others if required. There should be a title, details of the action, priority, due date, owner, and frequency of updates needed. It must be less than 2000 characters.
+### Current mitigations  
+These are any current mitigations already in place for the risk, and can include an overall risk mitigating strategy. It must be plain text and fewer than 2000 characters.  
 
-**Target impact score**  
-This what the risk impact will be after the planned mitigations have taken place. It must be one of the following options:  
+Data type: String  
+Format: Plain text  
+
+### Planned mitigations  
+Any planned mitigations that will be in place. They can be assigned to others if required. There should be a title, details of the action, priority, due date, owner, and frequency of updates needed. It must be less than 2000 characters.  
+
+Data type: String  
+Format: Plain text  
+
+### Target impact score  
+This what the risk impact will be after the planned mitigations have taken place.  
+
+Data type: Options list  
+Format: It must be one of the following options:  
 
 - 1 – Very low  
 - 2 – Low  
@@ -119,8 +166,11 @@ This what the risk impact will be after the planned mitigations have taken place
 - 4 – High  
 - 5 – Very high  
 
-**Target likelihood score**  
-How likely a risk is to happen after the mitigation has taken place. It must be one of the following options:  
+### Target likelihood score    
+How likely a risk is to happen after the mitigation has taken place.  
+
+Data type: Options list  
+Format: It must be one of the following options:  
 
 - 1 – Very low  
 - 2 – Low  
@@ -128,11 +178,18 @@ How likely a risk is to happen after the mitigation has taken place. It must be 
 - 4 – High  
 - 5 – Very high  
 
-**Target total risk score**  
-This is a calculated value that shows how severe the risk will be after mitigations. It is created by multiplying target impact score by target likelihood score. It must be a whole number.
+### Target total risk score  
+This is a calculated value that shows how severe the risk will be after mitigations. It is created by multiplying target impact score by target likelihood score. It must be a whole number.  
+This standard is automatically generated and the data provider does not need to enter this information.  
 
-**Proximity**  
-This is the length of time that the impact of this risk covers. It must be one of the following:  
+Data type: Calculated  
+Format: Integer  
+
+### Proximity  
+This is the length of time that the impact of this risk covers.  
+
+Data type: Options list  
+Format: It must be one of the following options:    
 
 - < 3 months  
 - 3 to 12 months  
@@ -141,23 +198,37 @@ This is the length of time that the impact of this risk covers. It must be one o
 - > 36 months  
 
 
-**Risk approach**  
+### Risk approach    
 This only applies if the target score is lower than the current score. There are two options: treat or tolerate.  
 Treat: Mitigations will be planned and implemented to reduce the current score so it is the same as the target score.  
 Tolerate: The risk owner decides that further mitigations are not needed or possible.   
 
-**Path to target?**  
-This is the question: “are the planned mitigations sufficient to bring the risk within target?” with a yes or no answer.
+Data type: Calculated options list  
+Format: Treat or Tolerate  
 
-**Date to target**  
-This is the date by which risk is expected to be within target. This is often the date that the last mitigations are implemented. It is formatted as a date: YYYY-MM-DD.
+### Path to target?    
+This is the question: “are the planned mitigations sufficient to bring the risk within target?” with a yes or no answer.  
 
-**Risk closed date**  
+Data type: Boolean  
+Format: Yes or No  
+
+### Date to target    
+This is the date by which risk is expected to be within target. This is often the date that the last mitigations are implemented.  
+
+Data type: Date  
+Format: YYYY-MM-DD.
+
+### Risk closed date  
 This is the date and time the risk is closed.   
-It is formatted as date and time: YYYY-MM-DD hh:mm:ss.  
 
-**Risk closed by**  
-This is the person who closed the risk, and the format is a person’s name. 
+Data type: Date and time  
+Format: YYYY-MM-DD hh:mm:ss.  
+
+### Risk closed by    
+This is the person who closed the risk.  
+
+Data type: Person  
+Format: Person's name
 
 
 ## Data entities
