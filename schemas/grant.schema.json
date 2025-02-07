@@ -1,0 +1,153 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "JSON Schema for Grant entities in MHCLG",
+    "title": "grant",
+    "type": "object",
+    "required": [
+        "id",
+        "dg_group",
+        "name",
+        "ggis_ref",
+        "allocation_method",
+        "Expected Recipient",
+        "status",
+        "aim_objectives",
+        "welsh_translation",
+        "bc_programme_name",
+        "bc_portfolio_name",
+        "planned_start_date",
+        "planned_end_date"
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A system generated unique identifier for a grant.",
+            "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
+            "pattern": "^[a-z0-9\\-]+$",
+            "readOnly": true
+        },
+        "dg_group": {
+            "type": "string",
+            "description": "Director General groups within MHCLG that grant is issued/ sponsored by",
+            "example": "Local Growth, Communities and Devolution",
+            "enum": [
+            "Local Government and Public Service",
+            "Local Growth, Communities and Devolution",
+            "Safer and Greener Buildings",
+            "Regeneration, Housing and Planning"
+            ]
+        },
+        "name": {
+            "type": "string",
+            "description": "the name of the grant scheme",
+            "maxLength": 256,
+            "example": "towns fund",
+            "pattern": "^[a-zA-ZÀ-ÖØ-öø-ÿ\\s\\-\\'^]+$"
+        },
+        "ggis_ref": {
+            "type": "string",
+            "description": "the reference number of the scheme",
+            "maxLength": 256,
+            "example": "",
+            "pattern": "^[a-zA-Z0-9\\-]+$"
+        },
+        "allocation_method": {
+            "type": "string",
+            "description":"The method of which the grant is allocated",
+            "example": "un-competed",
+            "enum": [
+            "Un-competed",
+            "Compted",
+            "Formula based",
+            "Critera based",
+            "Mixed",
+            "Allocative",
+            "Expression of interest(EOI)"
+            ]
+        },
+        "Expected Recipient": {
+            "type": "array",
+            "description": "Who are expected to be the recipients of this grant?",
+            "example": "Local Authority, Charity",
+            "items": {
+                "type": "string",
+                "enum": ["Local Authority", "Charity", "Company", "Amrs Length Bodies (ALB)","Other"]
+            }
+        },        
+        "status": {
+            "type": "string",
+            "description": "stage that the grant is at",
+            "example": "Design and Devlopment",
+            "enum": [
+            "Design and Development",
+            "Approved",
+            "In payment",
+            "Closed",
+            "Withdrawn"
+            ]
+        },
+        "aim_objectives": {
+            "type": "string",
+            "description": "Description of the aims and objectives of the grant",
+            "maxLength": 255,
+            "example": "",
+            "pattern": "^[a-zA-Z0-9\\-]+$"
+        },
+        "welsh_translation": {
+            "type": "boolean",
+            "description":"Does this grant need to be supported with Welsh translation?",
+            "example": true
+        },
+        "bc_programme_name": {
+            "type": "string",
+            "description": "Name/ title of the programme/ sub portfolio - required for business case (if applicable)",
+            "maxLength": 255,
+            "example": "",
+            "pattern": "^[a-zA-Z0-9\\-]+$"
+        },
+        "bc_portfolio_name": {
+            "type": "string",
+            "description": "Name/ title of the portfolio - required for business case (if applicable)",
+            "maxLength": 255,
+            "example": "",
+            "pattern": "^[a-zA-Z0-9\\-]+$"
+        },
+        "planned_start_date":{
+        "type": "string",
+        "format": "date",
+        "description": "Planned start date for the grant",
+        "example": "2024-01-31"
+        },
+        "planned_end_date":{
+            "type": "string",
+            "format": "date",
+            "description": "Planned end date for the grant",
+            "example": "2024-01-31"
+            },
+        "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the grant entity was created.",
+            "example": "2024-01-31T23:59:59Z",
+            "readOnly": true
+        },
+        "created_by": {
+            "$ref": "schemas/user.schema.json",
+            "description": "The User that created the grant entity.",
+            "readOnly": true
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the grant entity was last updated.",
+            "example": "2024-03-12T23:59:59Z",
+            "readOnly": true
+        },
+        "updated_by": {
+            "$ref": "schemas/user.schema.json",
+            "description": "The User that last updated the grant entity.",
+            "readOnly": true
+        }
+    }
+}
