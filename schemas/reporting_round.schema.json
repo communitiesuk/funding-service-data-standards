@@ -1,57 +1,61 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "description": "JSON Schema for User entities in MHCLG",
-    "title": "User",
+    "description": "JSON Schema for Reporting round entities in MHCLG",
+    "title": "Reporting Round",
     "type": "object",
     "required": [
         "id",
-        "full_name",
-        "organisation",
-        "role",
+        "reporting_round_reference",
+        "period_start_date",
+        "period_end_date",
+        "opening_datetime",
+        "closing_datetime",
+        "created_by",
         "created_at",
-        "created_by"
+        "updated_at",
+        "updated_by"
     ],
     "properties": {
         "id": {
             "type": "string",
             "format": "uuid",
-            "description": "A system generated unique identifier for a User.",
+            "description": "A system generated unique identifier for a reporting round.",
             "example": "0191986d-a0a0-7a51-8fd3-390d8f23d968",
             "pattern": "^[a-z0-9\\-]+$",
             "readOnly": true
         },
-        "full_name": {
+        "reporting_round_reference": {
             "type": "string",
-            "description": "The full name of the individual.",
+            "description": "",
             "maxLength": 256,
-            "example": "Brian Smith",
+            "example": "",
             "pattern": "^[a-zA-ZÀ-ÖØ-öø-ÿ\\s\\-\\'^]+$"
         },
-        "organisation": {
-            "$ref": "schemas/organisation.schema.json",
-            "description": "Reference to the organisation the individual works for."
-        },
-        "role": {
+        "period_start_date":{
             "type": "string",
-            "description": "The job title or position of the individual within an organisation.",
-            "maxLength": 256,
-            "example": "Section 151 Officer",
-            "pattern": "^[a-zA-Z0-9\\-]+$"
+            "format": "date",
+            "description": "",
+            "example": "2024-01-01"
         },
-        "email_address": {
+        "period_end_date":{
+                "type": "string",
+                "format": "date",
+                "description": "",
+                "example": "2024-01-31"
+        },
+        "opening_datetime": {
             "type": "string",
-            "format": "email",
-            "description": "The email address of the individual.",
-            "maxLength": 254,
-            "example": "brian.smith@organisation.com"
+            "format": "date-time",
+            "description": "",
+            "example": "2023-12-31T23:59:59Z",
+            "readOnly": true
         },
-        "telephone_number": {
-            "type": "integer",
-            "format": "int32",
-            "description": "The mobile or work landline telephone number of the User.",
-            "example": "02083592000",
-            "maxLength": 15,
-            "pattern": "^[0-9+\\s\\(\\)-]+$"
+        "closing_datetime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "",
+            "example": "2024-01-31T23:59:59Z",
+            "readOnly": true
         },
         "created_at": {
             "type": "string",
@@ -88,17 +92,5 @@
         "closed_at": [
             "closed_by"
         ]
-    },
-    "oneOf": [
-        {
-            "required": [
-                "email_address"
-            ]
-        },
-        {
-            "required": [
-                "telephone_number"
-            ]
-        }
-    ]
+    }
 }

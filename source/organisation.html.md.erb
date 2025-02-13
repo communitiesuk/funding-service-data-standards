@@ -6,7 +6,7 @@ review_in: 6 months
 ---
 
 # Organisation
-### v0.1
+### v1
 
 This data standard describes the information MHCLG collects about organisations, in order to provide funding. Our aim is to:
 
@@ -51,7 +51,9 @@ The organisation data standard consists of the following entities:
         "telephone_number",
         "email_address",
         "created_at",
-        "created_by"
+        "created_by",
+        "updated_at",
+        "updated_by"
     ],
     "properties": {
         "id": {
@@ -153,6 +155,17 @@ The organisation data standard consists of the following entities:
             "description": "A reference to the User that last updated the Organisation entity.",
             "readOnly": true
         }
+    },
+    "dependentRequired": {
+        "created_at": [
+            "created_by"
+        ],
+        "updated_at": [
+            "updated_by"
+        ],
+        "closed_at": [
+            "closed_by"
+        ]
     }
 }
 ```
