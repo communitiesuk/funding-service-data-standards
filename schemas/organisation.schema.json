@@ -11,7 +11,9 @@
         "telephone_number",
         "email_address",
         "created_at",
-        "created_by"
+        "created_by",
+        "updated_at",
+        "updated_by"
     ],
     "properties": {
         "id": {
@@ -113,5 +115,16 @@
             "description": "A reference to the User that last updated the Organisation entity.",
             "readOnly": true
         }
+    },
+    "dependentRequired": {
+        "created_at": [
+            "created_by"
+        ],
+        "updated_at": [
+            "updated_by"
+        ],
+        "closed_at": [
+            "closed_by"
+        ]
     }
 }

@@ -7,7 +7,7 @@ review_in: 6 months
 ---
 
 # Grant
-### v0.1
+### version: 1
 
 A definition of common grant data that is used to drive the funding lifecycle.  
 
@@ -48,7 +48,11 @@ The grant data standard consists of the following entities:
         "bc_programme_name",
         "bc_portfolio_name",
         "planned_start_date",
-        "planned_end_date"
+        "planned_end_date",
+        "created_at",
+        "created_by",
+        "updated_at",
+        "updated_by"
     ],
     "properties": {
         "id": {
@@ -181,6 +185,17 @@ The grant data standard consists of the following entities:
             "description": "The User that last updated the grant entity.",
             "readOnly": true
         }
+    },
+    "dependentRequired": {
+        "created_at": [
+            "created_by"
+        ],
+        "updated_at": [
+            "updated_by"
+        ],
+        "closed_at": [
+            "closed_by"
+        ]
     }
 }
 ```

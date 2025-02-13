@@ -16,7 +16,11 @@
         "bc_programme_name",
         "bc_portfolio_name",
         "planned_start_date",
-        "planned_end_date"
+        "planned_end_date",
+        "created_at",
+        "created_by",
+        "updated_at",
+        "updated_by"
     ],
     "properties": {
         "id": {
@@ -149,5 +153,16 @@
             "description": "The User that last updated the grant entity.",
             "readOnly": true
         }
+    },
+    "dependentRequired": {
+        "created_at": [
+            "created_by"
+        ],
+        "updated_at": [
+            "updated_by"
+        ],
+        "closed_at": [
+            "closed_by"
+        ]
     }
 }
