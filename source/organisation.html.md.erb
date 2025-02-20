@@ -20,9 +20,7 @@ This data standard describes the information MHCLG collects about organisations,
 |---------------|---------------|
 | The Funding Service SME | Jordan Dale |
 | Data Standard Owner (The Business) | n/a |
-| Status | In Progress |
-| Date | n/a |
-| Notes | n/a |
+| Status | Ready for implementation |
 
 
 ## Data entities
@@ -32,9 +30,6 @@ The organisation data standard consists of the following entities:
 - **Organisation** - the main data entity detailing Organisation information
 - **Person** - the main contact for the organisation
 - **Address** - the primary contact address
-
-![Organisation Entity Relationship Diagram](/images/organisation-ERD.png)
-> An Organisation entity relationship diagram showing the relationships between the Organisation, Address and Person entities, where Organisations should have one primary Address and one primary contact Person. In reality, a Person would also likely be linked to one or more Organisations in order to properly manage User permissions.
 
 ## JSON Schema
 ```
@@ -84,6 +79,7 @@ The organisation data standard consists of the following entities:
                 "Charity",
                 "Limited company",
                 "Local authority",
+                "Local planning authority",
                 "Other"
             ],
             "example": "Government Department",
