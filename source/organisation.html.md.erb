@@ -31,6 +31,133 @@ The organisation data standard consists of the following entities:
 - **Person** - the main contact for the organisation
 - **Address** - the primary contact address
 
+## Organisation standards  
+
+### Name  
+The name of the organisation.  If the organisation is known by more than one name, this should be the official name registered with Companies House or the Charity Commission.  
+It should be fewer than 160 characters.  
+
+**Data type:** String  
+**Format:** Alphanumeric  
+
+This field is mandatory.  
+
+### Alternative name  
+An alternative name of the organisation.  It should be fewer than 160 characters.  
+
+**Data type:** String  
+**Format:** Alphanumeric  
+
+This field is optional  
+
+### Type  
+The type of organisation, as chosen on an options list.  
+**Data type:** Options list  
+**Format:** 
+The data provider should select one of the following options:
+
+- Charity
+- Limited company
+- Local authority
+- Other
+
+This field is mandatory.
+
+### Companies House reference number  
+The Companies House registration number for the organisation.   
+
+**Data type:** Alphanumeric  
+**Format:** Eight numbers, or two letters followed by 6 numbers.  
+
+This must be supplied if the organisation is a limited company. 
+
+### Charity Commission number  
+The Charity Commission number for the charity. It must be a number between 6 and 8 characters. A hyphen can be used for the first character.  
+
+**Data type:** String  
+**Format:** Alphanumeric  
+
+This must be supplied if the organisation is a charity. 
+
+### Local Authority code  
+
+The Government Statistical Service (GSS) local authority (LA) code.  
+
+**Data type:** String  
+**Format:** Alphanumeric  
+
+This must be supplied if the organisation is a local authority.  
+
+### Address  
+The main registered address for the organisation. It must be in the format of a UPRN number. If the user does not know the number, they can look it up using Find my Address.   
+
+**Data type:** Address  
+**Format:** UPRN  
+
+This field is mandatory.
+
+### Primary contact name  
+A person that we can contact if we need to.  
+
+**Data type:** Person  
+**Format:** The full name of the person.  
+
+This field is mandatory.
+
+### Primary contact role  
+The job title or position of the individual within the organisation.  
+
+**Data type:** String  
+**Format:** Alphanumeric  
+
+This field is mandatory.
+
+### Primary contact email address  
+The email address of the primary contact.  
+
+**Data type:** string  
+**Format:** Alphanumeric.   
+
+Either the primary contact email address or telephone number must be supplied.  
+
+### Primary contact telephone number  
+The telephone number of the primary contact.  
+
+**Data type:** String  
+**Format:** Alphanumeric  
+
+Either the primary contact email address or telephone number must be supplied. 
+
+### Website  
+The URL of the company website.  
+
+**Data type:** String  
+**Format:** Alphanumeric  
+
+### Telephone number  
+The main telephone number for the organisation.  
+
+**Data type:** String  
+**Format:** Alphanumeric  
+
+### Email address  
+A general enquiries email address for the organisation. 
+
+**Data type:** string  
+**Format:** Alphanumeric  
+
+### Active Date  
+The date the organisation was established.  
+
+**Data type:** Date  
+**Format:** DD-MM-YYYY  
+
+###Retirement Date  
+The date the organisation closed.  
+
+**Data type:** Date  
+**Format:** DD-MM-YYYY
+
 ## JSON Schema
 ```
 {
