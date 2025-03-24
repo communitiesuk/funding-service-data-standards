@@ -8,8 +8,12 @@
         "full_name",
         "organisation",
         "role",
+        "email_address",
+        "telephone_number",
         "created_at",
-        "created_by"
+        "created_by",
+        "updated_at",
+        "updated_by"
     ],
     "properties": {
         "id": {
