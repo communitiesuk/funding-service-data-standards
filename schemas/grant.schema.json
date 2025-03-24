@@ -9,7 +9,7 @@
         "name",
         "ggis_ref",
         "allocation_method",
-        "Expected Recipient",
+        "expected_recipient",
         "status",
         "aim_objectives",
         "welsh_translation",
@@ -76,7 +76,7 @@
             "example": "Local Authority, Charity",
             "items": {
                 "type": "string",
-                "enum": ["Local Authority", "Charity", "Company", "Amrs Length Bodies (ALB)","Other"]
+                "enum": ["Local Authority", "Local Planning Authority","Charity", "Company", "Amrs Length Bodies (ALB)","Other"]
             }
         },        
         "status": {
