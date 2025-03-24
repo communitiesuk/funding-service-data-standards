@@ -64,7 +64,8 @@ The type of organisation that is expected to receive the grant.
 **Data type:** Options list. Multiple options must be able to be selected.  
 **Format:** Must be one or more of the following options:  
 
-- Local Authority  
+- Local Authority
+- Local Planning Authority  
 - Charity  
 - Company  
 - Arm’s Length Bodies  
@@ -142,7 +143,7 @@ The grant data standard consists of the following entities:
         "name",
         "ggis_ref",
         "allocation_method",
-        "Expected Recipient",
+        "expected_recipient",
         "status",
         "aim_objectives",
         "welsh_translation",
@@ -203,13 +204,13 @@ The grant data standard consists of the following entities:
             "Expression of interest(EOI)"
             ]
         },
-        "Expected Recipient": {
+        "expected_recipient": {
             "type": "array",
             "description": "Who are expected to be the recipients of this grant?",
             "example": "Local Authority, Charity",
             "items": {
                 "type": "string",
-                "enum": ["Local Authority", "Charity", "Company", "Amrs Length Bodies (ALB)","Other"]
+                "enum": ["Local Authority", Local Planning Authority,"Charity", "Company", "Amrs Length Bodies (ALB)","Other"]
             }
         },        
         "status": {
