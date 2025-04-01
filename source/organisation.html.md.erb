@@ -35,20 +35,19 @@ The organisation data standard consists of the following entities:
 
 ### Name  
 The name of the organisation.  If the organisation is known by more than one name, this should be the official name registered with Companies House or the Charity Commission.  
-It should be fewer than 160 characters.  
 
 **Data type:** String  
 **Format:** Alphanumeric  
-
-This field is mandatory.  
+**Conditions:** Mandatory  
+**Validation:** Fewer than 160 characters.  
 
 ### Alternative name  
-An alternative name of the organisation.  It should be fewer than 160 characters.  
+An alternative name of the organisation.  
 
 **Data type:** String  
 **Format:** Alphanumeric  
-
-This field is optional  
+**Conditions:** Optional  
+**Validation:** Fewer than 160 characters.  
 
 ### Type  
 The type of organisation, as chosen on an options list. 
@@ -62,23 +61,24 @@ The type of organisation, as chosen on an options list.
 - Local planning authority
 - Other
 
-This field is mandatory.
+**Conditions:** Mandatory  
+**Validation:** Must be one of the above options.  
 
 ### Companies House reference number  
 The Companies House registration number for the organisation.   
 
-**Data type:** Alphanumeric  
-**Format:** Eight numbers, or two letters followed by 6 numbers.  
-
-This must be supplied if the organisation is a limited company. 
+**Data type:** String  
+**Format:**   Alphanumeric  
+**Conditions:** This must be supplied if the organisation is a limited company.   
+**Validation:** 8 numbers, or 2 letters followed by 6 numbers.   
 
 ### Charity Commission number  
-The Charity Commission number for the charity. It must be a number between 6 and 8 characters. A hyphen can be used for the first character.  
+The Charity Commission number for the charity.  
 
 **Data type:** String  
 **Format:** Alphanumeric  
-
-This must be supplied if the organisation is a charity. 
+**Conditions:** This must be supplied if the organisation is a charity.  
+**Validation:** It must be a number between 6 and 8 characters. A hyphen can be used for the first character.  
 
 ### Local Authority code  
 
@@ -86,87 +86,72 @@ The Government Statistical Service (GSS) local authority (LA) code.
 
 **Data type:** String  
 **Format:** Alphanumeric  
-
-This must be supplied if the organisation is a local authority.  
+**Conditions:** This must be supplied if the organisation is a local authority.  
+**Validation:** 3 letters followed by 6 numbers. 
 
 ### Local Planning Authority code  
 
 A unique reference for a local planning authority. A local planning authority may be a local authority, national park authority or development corporation.
 
 **Data type:** String  
-**Format:** Alphanumeric 
-
-This must be supplied if the organisation is a local planning authority.  
+**Format:** Alphanumeric  
+**Conditions:** This must be supplied if the organisation is a local planning authority.  
+**Validation:** 1 letter followed by 8 numbers.  
 
 ### Address  
 The main registered address for the organisation. It must be in the format of a UPRN number. If the user does not know the number, they can look it up using Find my Address.   
 
 **Data type:** Address  
 **Format:** UPRN  
+**Conditions:** Mandatory  
+**Validation:** Must be a valid address  
 
-This field is mandatory.
-
-### Primary contact name  
+### Primary contact  
 A person that we can contact if we need to.  
 
-**Data type:** Person  
-**Format:** The full name of the person.  
-
-This field is mandatory.
-
-### Primary contact role  
-The job title or position of the individual within the organisation.  
-
-**Data type:** String  
-**Format:** Alphanumeric  
-
-This field is mandatory.
-
-### Primary contact email address  
-The email address of the primary contact.  
-
-**Data type:** string  
-**Format:** Alphanumeric.   
-
-Either the primary contact email address or telephone number must be supplied.  
-
-### Primary contact telephone number  
-The telephone number of the primary contact.  
-
-**Data type:** String  
-**Format:** Alphanumeric  
-
-Either the primary contact email address or telephone number must be supplied. 
+**Data type:** [Person](/person.html)  
+**Conditions:** Mandatory  
+**Validation:** Must follow the person data standard.  
 
 ### Website  
 The URL of the company website.  
 
 **Data type:** String  
 **Format:** Alphanumeric  
+**Conditions:** Optional  
+**Validation:** Fewer than 257 characters.  Special characters accepted: - . _ ~ : / 
 
 ### Telephone number  
 The main telephone number for the organisation.  
 
 **Data type:** String  
 **Format:** Alphanumeric  
+**Conditions:** Optional  
+**Validation:** Fewer than 16 characters.  Special characters accepted: + ( ) - and space 
 
 ### Email address  
 A general enquiries email address for the organisation. 
 
 **Data type:** string  
 **Format:** Alphanumeric  
+**Conditions:** Optional  
+**Validation:** Fewer than 255 characters. Must include @. Must be verified.  
 
 ### Active Date  
 The date the organisation was established.  
 
 **Data type:** Date  
 **Format:** DD-MM-YYYY  
+**Conditions:** Optional  
+**Validation:** Must be a correct date.  
 
 ###Retirement Date  
 The date the organisation closed.  
 
 **Data type:** Date  
-**Format:** DD-MM-YYYY
+**Format:** DD-MM-YYYY  
+**Conditions:** Optional  
+**Validation:** Must be a correct date.  
 
 ## JSON Schema
 ```
