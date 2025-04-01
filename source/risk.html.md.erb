@@ -30,24 +30,23 @@ These are the standards in risk:
 
 ### Risk ID  
 This is a unique identifier of a risk.  
-This standard is automatically generated and the data provider does not need to enter this information.  
 
 **Data type:** UUID  
 **Format:** Version 7 UUID  
 
-### Organisation ID  
-This is a unique identifier of the organisation that owns and has reported the risk.  
 This standard is automatically generated and the data provider does not need to enter this information.  
 
-**Data type:** String  
-**Format:** Plain text 
+### Organisation  
+This is the organisation that owns and has reported the risk.  
+It should follow the standard for [organisation](/organisation.html).  
 
 ### Risk title  
-A short description of the risk in fewer than 100 characters.  
-Special characters accepted: ! £ % ( ) : ; @ ? -  
+A short description of the risk.
 
 **Data type:** String  
-**Format:** Alphanumeric 
+**Format:** Alphanumeric  
+**Conditions:** Mandatory  
+**Validation:** Fewer than 100 characters. Special characters accepted: ! £ % ( ) : ; @ ? -  
 
 ### Risk description  
 A description of the risk that includes:  
@@ -58,10 +57,11 @@ A description of the risk that includes:
 
 Where possible, the risk description should be formatted like this:  
 There is a risk that x happens, due to y, which will result in z.  
-This field should be fewer than 5,000 characters.  
 
 **Data type:** String  
 **Format:** Plain text  
+**Conditions:** Mandatory  
+**Validation:** Fewer than 5,000 characters.  
 
 ### Principle risk category  
 This is the category of risk.  
@@ -83,6 +83,8 @@ This is the category of risk.
 - Strategy  
 - Systems and infrastructure  
 
+**Conditions:** Mandatory  
+**Validation:** Must be one of the above options.  
 
 ### Risk status    
 This is the overall status of the risk.  
@@ -97,17 +99,23 @@ This is the overall status of the risk.
 - Watch  
 - Closed  
 
+**Conditions:** Mandatory  
+**Validation:** Must be one of the above options.  
+
 ### Risk owner  
 This should be a person who is responsible for the overall management and reporting of a risk. Owners of risks are generally: Principal Risk Level: Director General, Portfolio Level: Director, Tier 1 Level: Deputy Director, Tier 2 and Project Level: Grade 6/7.  
 
 **Data type:** Person  
-**Format:** Follow the standard for a person  
+**Format:** Follow the standard for a [person](/person.html).  
+**Conditions:** Optional  
+**Validation:** Must follow the standard for a [person](/person.html).  
 
 ### Risk to life  
 Ask if there is risk to life, and record yes or no.  
 
 **Data type:** Boolean  
-**Format:** Yes or No
+**Format:** Yes or No  
+**Conditions:** Optional  
 
 ### Current impact score  
 This should show the impact of the risk.  
@@ -121,6 +129,9 @@ This should show the impact of the risk.
 - 4 - High  
 - 5 - Very high  
 
+**Conditions:** Mandatory  
+**Validation:** Must be one of the above options.  
+
 ### Current likelihood score  
 How likely a risk is to happen.  
 
@@ -133,24 +144,33 @@ How likely a risk is to happen.
 - 4 - High  
 - 5 - Very high  
 
+**Conditions:** Mandatory  
+**Validation:** Must be one of the above options.  
+
 ### Current total risk score  
 This is a calculated value that shows how severe the risk is. It is created by multiplying current impact score by current likelihood score. It must be a whole number.  
-It is automatically generated and the data provider does not need to enter this information.  
 
 **Data type:** Calculated  
 **Format:** Integer  
 
+This standard is automatically generated and the data provider does not need to enter this information.  
+
 ### Current mitigations  
-These are any current mitigations already in place for the risk, and can include an overall risk mitigating strategy. It must be plain text and fewer than 2000 characters.  
+These are any current mitigations already in place for the risk, and can include an overall risk mitigating strategy.  
 
 **Data type:** String  
 **Format:** Plain text  
+**Conditions:** Mandatory  
+**Validation:** Fewer than 2000 characters.  
+
 
 ### Planned mitigations  
 Any planned mitigations that will be in place. They can be assigned to others if required. There should be a title, details of the action, priority, due date, owner, and frequency of updates needed. It must be less than 2000 characters.  
 
 **Data type:** String  
 **Format:** Plain text  
+**Conditions:** Mandatory  
+**Validation:** Fewer than 2000 characters.  
 
 ### Target impact score  
 This what the risk impact will be after the planned mitigations have taken place.  
@@ -164,6 +184,9 @@ This what the risk impact will be after the planned mitigations have taken place
 - 4 – High  
 - 5 – Very high  
 
+**Conditions:** Mandatory  
+**Validation:** Must be one of the above options.  
+
 ### Target likelihood score    
 How likely a risk is to happen after the mitigation has taken place.  
 
@@ -176,12 +199,16 @@ How likely a risk is to happen after the mitigation has taken place.
 - 4 – High  
 - 5 – Very high  
 
+**Conditions:** Mandatory  
+**Validation:** Must be one of the above options.  
+
 ### Target total risk score  
 This is a calculated value that shows how severe the risk will be after mitigations. It is created by multiplying target impact score by target likelihood score. It must be a whole number.  
-This standard is automatically generated and the data provider does not need to enter this information.  
 
 **Data type:** Calculated  
 **Format:** Integer  
+
+This standard is automatically generated and the data provider does not need to enter this information.  
 
 ### Proximity  
 This is the length of time that the impact of this risk covers.  
@@ -195,6 +222,8 @@ This is the length of time that the impact of this risk covers.
 - 24 to 36 months  
 - > 36 months  
 
+**Conditions:** Optional  
+**Validation:** Must be one of the above options.  
 
 ### Risk approach    
 This only applies if the target score is lower than the current score. There are two options: treat or tolerate.  
@@ -203,31 +232,40 @@ Tolerate: The risk owner decides that further mitigations are not needed or poss
 
 **Data type:** Calculated options list  
 **Format:** Treat or Tolerate  
+**Conditions:** Optional  
+**Validation:** Must be one of the above options.  
 
-### Path to target?    
+### Path to target    
 This is the question: “are the planned mitigations sufficient to bring the risk within target?” with a yes or no answer.  
 
 **Data type:** Boolean  
 **Format:** Yes or No  
+**Conditions:** Optional  
+**Validation:** Must be one of the above options.  
 
 ### Date to target    
 This is the date by which risk is expected to be within target. This is often the date that the last mitigations are implemented.  
 
 **Data type:** Date  
-**Format:** DD-MM-YYYY
+**Format:** DD-MM-YYYY  
+**Conditions:** Optional  
+**Validation:** Valid date format.  
 
 ### Risk closed date  
 This is the date and time the risk is closed.   
 
 **Data type:** Date and time  
 **Format:** DD-MM-YYYY hh:mm:ss  
+**Conditions:** Optional  
+**Validation:** Valid date and time format.  
 
 ### Risk closed by    
 This is the person who closed the risk.  
 
 **Data type:** Person  
-**Format:** Person's name
-
+**Format:** Person's name  
+**Conditions:** Mandatory if the risk has been closed.  
+**Validation:** Must follow the standard for a [person](/person.html). 
 
 ## Data entities
 
