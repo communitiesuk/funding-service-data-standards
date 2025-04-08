@@ -25,6 +25,7 @@ Full name of the person who is certifying the data.
 **Data type:**  Person  
 **Format:**  [Person full name]( https://communitiesuk.github.io/funding-service-data-standards/Person.html#full-name)  
 **Conditions:** Mandatory  
+**Validation:** [Person full name]( https://communitiesuk.github.io/funding-service-data-standards/Person.html#full-name)  
 
 ###   Signatory role  
 The job title or position of the signatory.  
@@ -32,6 +33,7 @@ The job title or position of the signatory.
 **Data type:**  String  
 **Format:** [Role]( https://communitiesuk.github.io/funding-service-data-standards/Person.html#role)  
 **Conditions:** Mandatory  
+**Validation:** [Role]( https://communitiesuk.github.io/funding-service-data-standards/Person.html#role)  
 
 ###   Signatory phone number  
 Contact telephone number for the signatory. It can be either a mobile number or a landline. 
@@ -39,6 +41,7 @@ Contact telephone number for the signatory. It can be either a mobile number or 
 **Data type:**  String  
 **Format:**  [A phone number]( https://communitiesuk.github.io/funding-service-data-standards/Person.html#contact-number)   
 **Conditions:** Optional  
+**Validation:** [A phone number]( https://communitiesuk.github.io/funding-service-data-standards/Person.html#contact-number)  
 
 ###   Signatory email address  
 The email address of the signatory.  
@@ -46,6 +49,7 @@ The email address of the signatory.
 **Data type:**  String  
 **Format:**  [Email address]( https://communitiesuk.github.io/funding-service-data-standards/Person.html#email-address)  
 **Conditions:** Mandatory  
+**Validation:**  [Email address]( https://communitiesuk.github.io/funding-service-data-standards/Person.html#email-address)  
 
 ###   Deadline to certify report  
 Date that the report needs to be certified by.  
@@ -53,6 +57,7 @@ Date that the report needs to be certified by.
 **Data type:**  Date  
 **Format:** DD-MM-YYYY  
 **Conditions:** Mandatory  
+**Validation:** Must be a correct date.  
 
 ###   Confirmation of certification  
 The data provider will enter yes or no to confirm if the data has been reviewed and is accurate.   
@@ -60,6 +65,7 @@ The data provider will enter yes or no to confirm if the data has been reviewed 
 **Data type:**  Boolean  
 **Format:** Select yes or no  
 **Conditions:** Mandatory  
+**Validation:** Must be one of the above options.  
 
 ###   Certification date  
 Date that the data was signed off.  
@@ -67,6 +73,7 @@ Date that the data was signed off.
 **Data type:**  Date  
 **Format:** DD-MM-YYYY  
 **Conditions:** Mandatory  
+**Validation:** Must be a correct date.  
 
 This data is automatically generated and the data provider does not need to enter this information.  
 
@@ -82,6 +89,7 @@ This is the status of the certification.
 - Submitted  
 
 **Conditions:** Mandatory  
+**Validation:** Must be one of the above options.  
 
 
 ## JSON Schema

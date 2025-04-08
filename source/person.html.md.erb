@@ -26,7 +26,15 @@ The full name of the individual.
 **Data type:**  String  
 **Format:** Name. See the GOV.UK design system.  
 **Conditions:** Mandatory  
+**Validation:** Fewer than 256 characters.  
 
+### Organisation  
+The organisation the individual represents. A person may represent multiple organisations.  
+
+**Data type:** Organisation  
+**Format:** Follow the standard for an [organisation](/organisation.html).  
+**Conditions:** Mandatory  
+**Validation:** Must follow the standard for an [organisation](/organisation.html).  
 
 ###  Role   
 The job title or position of the person within the organisation.  
@@ -35,6 +43,7 @@ The job title or position of the person within the organisation.
 **Data type:**  String  
 **Format:** Plain text  
 **Conditions:** Mandatory  
+**Validation:** Fewer than 256 characters.  
 
 ###  Email address  
 The email address for the person.  
@@ -42,6 +51,7 @@ The email address for the person.
 **Data type:**  String  
 **Format:** Alphanumeric  
 **Conditions:** Mandatory  
+**Validation:** Fewer than 255 characters. Must include @. Must be verified.  
 
 ###  Contact number  
 The contact number for the person.  
@@ -49,6 +59,7 @@ The contact number for the person.
 **Data type:**  String  
 **Format:** A number  
 **Conditions:** Optional  
+**Validation:** Fewer than 16 characters.  Special characters accepted: + ( ) - and space  
 
 ## JSON Schema
 ###this schema is currently an alpha schema and will be subject to change
