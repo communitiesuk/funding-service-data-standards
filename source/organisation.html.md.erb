@@ -33,6 +33,21 @@ The organisation data standard consists of the following entities:
 
 ## Organisation standards  
 
+### Type  
+The type of organisation, as chosen on an options list. 
+ 
+**Data type:** Options list  
+**Format:** Must be one of the following options:  
+
+- Charity
+- Limited company
+- Local authority
+- Local planning authority
+- Other
+
+**Conditions:** Mandatory  
+**Validation:** Must be one of the above options.  
+
 ### Name  
 The name of the organisation.  If the organisation is known by more than one name, this should be the official name registered with Companies House or the Charity Commission.  
 
@@ -48,21 +63,6 @@ An alternative name of the organisation.
 **Format:** Alphanumeric  
 **Conditions:** Optional  
 **Validation:** Fewer than 160 characters.  
-
-### Type  
-The type of organisation, as chosen on an options list. 
- 
-**Data type:** Options list  
-**Format:** Must be one of the following options:  
-
-- Charity
-- Limited company
-- Local authority
-- Local planning authority
-- Other
-
-**Conditions:** Mandatory  
-**Validation:** Must be one of the above options.  
 
 ### Companies House reference number  
 The Companies House registration number for the organisation.   
@@ -152,6 +152,8 @@ The date the organisation closed.
 **Format:** DD-MM-YYYY  
 **Conditions:** Optional  
 **Validation:** Must be a correct date.  
+
+This standard is automatically generated and the data provider does not need to enter this information.  
 
 ## JSON Schema
 ###this schema is currently an alpha schema and will be subject to change
