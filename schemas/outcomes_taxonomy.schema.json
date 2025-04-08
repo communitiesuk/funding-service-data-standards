@@ -1,0 +1,112 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "JSON Schema for outcome entities in MHCLG",
+    "title": "Outcomes",
+    "type": "object",
+    "properties": {
+        "theme": {
+            "type": "string",
+            "enum": [
+                "Children & Youth",
+                "Integrated communities and social cohesion",
+                "Multiple Disadvantage",
+                "Public Health",
+                "Crime & disorder",
+                "Climate change mitigation"
+            ],
+            "description": "Policy dependant grouping of activities to achieve an outcome."
+        },
+        "indicator": {
+            "type": "string",
+            "description": "Policy specific activities undertaken to achieve an outcome for a project or programme, based on the theme selected."
+        },
+        "unit_of_measurement": {
+            "type": "string",
+            "enum": [
+                "£",
+                "Km",
+                "n of",
+                "%",
+                "FTE",
+                "Other",
+                "Time",
+                "m2",
+                "% change"
+            ],
+            "description": "Unit of measurement used to measure outcome delivery."
+        },
+        "baseline_date": {
+            "type": "string",
+            "format": "date",
+            "pattern": "^\\d{2}-\\d{2}-\\d{4}$",
+            "description": "Date that the outcome baseline data was collected.",
+            "examples": ["01-08-2024"]
+            },
+        "metric": {
+            "type": "number",
+            "multipleOf": 0.1,
+            "description": "Quantifiable standardised measurement to 1 decimal place.",
+            "default": 0,
+            "examples": [100.5]
+            },
+        "time_period": {
+            "type": "string",
+            "pattern": "^(0[1-9]|1[0-2])-\\d{4}$",
+            "description": "Time period being reported on.",
+            "examples": ["08-2025"]
+            },
+        "outcome_context": {
+            "type": "string",
+            "maxLength": 2000,
+            "description": "Further context to the project outcome reported."
+            },
+        "outcome_impact": {
+            "type": "string",
+            "maxLength": 2000,
+            "description": "Details of the impact your project is having."
+            },
+        "Outcome": {
+            "type": "string",
+            "description": "Policy dependant list of outcomes. Will be constrained by options list once defined."
+            },
+        "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the User entity was created.",
+            "example": "2024-01-31T23:59:59Z",
+            "readOnly": true
+            },
+        "created_by": {
+            "$ref": "schemas/user.schema.json",
+            "description": "The User that created the User entity.",
+            "readOnly": true
+            },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the User entity was last updated.",
+            "example": "2024-03-12T23:59:59Z",
+            "readOnly": true
+            },
+        "updated_by": {
+            "$ref": "schemas/user.schema.json",
+            "description": "The User that last updated the User entity.",
+            "readOnly": true
+            }
+    },
+    "required": [
+        "Theme",
+        "Unit of measurement",
+        "Baseline date",
+        "Metric",
+        "Time period",
+        "Outcome"
+    ],
+    "dependentRequired": {
+        "created_at": ["created_by"],
+        "updated_at": ["updated_by"],
+        "closed_at": ["closed_by"],
+        "Indicator": ["Theme"]
+        }
+}
+    
