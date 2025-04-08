@@ -1,0 +1,136 @@
+---
+title: Output
+weight: 18
+last_reviewed_on: 2025-04-04
+review_in: 6 months
+
+---
+
+# Outputs Taxonomy
+### version: 1.0
+
+In government funding, outputs are the tangible deliverables or results produced during a project, representing specific tasks or activities. They focus on the "how" of achieving goals, while outcomes focus on the "what" you want to achieve.
+
+The purpose of the standard for Outputs (taxonomy) is to ensure that grant teams collecting data via the Funding Service are collecting a standard set of data, to enable analysis and comparison.
+
+## Status
+
+| Attribute | Details |
+|---------------|---------------|
+| The Funding Service SME | Callum Woolgar |
+| Data Standard Owner (The Business) | Funding Service |
+| Status | Ready for implementation |
+
+##Outputs taxonomy data standards  
+
+
+## JSON Schema
+###this schema is currently an alpha schema and will be subject to change
+```
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "JSON Schema for output entities in MHCLG",
+    "title": "Outputs",
+    "type": "object",
+    "properties": {
+      "output": {
+        "type": "string",
+        "description": "Policy dependant list of what is delivered or produced as a result of this funding."
+      },
+      "unit_of_measurement": {
+        "type": "string",
+        "enum": [
+          "£",
+          "Km",
+          "n of",
+          "%",
+          "FTE",
+          "Other",
+          "Time",
+          "m2",
+          "% change"
+        ],
+        "description": "Unit of measurement used to measure programme or project output."
+      },
+      "metric": {
+        "type": "number",
+        "multipleOf": 0.1,
+        "description": "Quantifiable standardised measurements to 1 decimal place.",
+        "default": 0,
+        "examples": [100.5]
+      },
+      "time_period": {
+        "type": "string",
+        "pattern": "^(0[1-9]|1[0-2])-\\d{4}$",
+        "description": "Time period being reported on.",
+        "examples": ["08-2025"]
+      },
+      "output_context": {
+        "type": "string",
+        "maxLength": 2000,
+        "description": "Further context to the project output reported."
+      },
+      "output_impact": {
+        "type": "string",
+        "maxLength": 2000,
+        "description": "Details of the impact your project is having."
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "The date and time when the User entity was created.",
+        "example": "2024-01-31T23:59:59Z",
+        "readOnly": true
+      },
+      "created_by": {
+        "$ref": "schemas/user.schema.json",
+        "description": "The User that created the User entity.",
+        "readOnly": true
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "The date and time when the User entity was last updated.",
+        "example": "2024-03-12T23:59:59Z",
+        "readOnly": true
+      },
+      "updated_by": {
+        "$ref": "schemas/user.schema.json",
+        "description": "The User that last updated the User entity.",
+        "readOnly": true
+      }
+    },
+    "required": [
+      "Output",
+      "Unit of measurement",
+      "Metric",
+      "Time period"
+    ],
+    "dependentRequired": {
+      "created_at": ["created_by"],
+      "updated_at": ["updated_by"],
+      "closed_at": ["closed_by"]
+    }
+  }
+  
+```
+
+
+## Reference Data
+
+| Reference data field | Source |
+|---------------|---------------|
+
+## Useful links
+
+| Useful links | Details |
+|--------------|---------|
+
+
+## Revision History
+
+| Revision | Reason | Date approved |
+|---------------|---------------|---------------|
+
+
+## Review date

@@ -70,7 +70,7 @@
             "Expression of interest(EOI)"
             ]
         },
-        "Expected Recipient": {
+        "expected_recipient": {
             "type": "array",
             "description": "Who are expected to be the recipients of this grant?",
             "example": "Local Authority, Charity",
