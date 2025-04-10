@@ -1,7 +1,7 @@
 ---
 title: Finance
 weight: 24
-last_reviewed_on: 2025-04-04
+last_reviewed_on: 2025-10-04
 review_in: 6 months
 
 ---
@@ -166,6 +166,7 @@ Alternative funding sources that are committed to be spent on revenue-related ac
 
 ### Funding requested  
 The total grant amount requested by each grant recipient. This does **not** include match funding.  
+
 **Data type:**  Decimal  
 **Format:** Numerical  
 **Conditions:** Mandatory for competitive funds.  
@@ -173,6 +174,7 @@ The total grant amount requested by each grant recipient. This does **not** incl
 
 ### Funding allocated   
 The total grant amount allocated to each grant recipient. This does **not** include match funding.  
+
 **Data type:**  Decimal  
 **Format:** Numerical  
 **Conditions:** Mandatory for allocative funds.   
@@ -180,6 +182,7 @@ The total grant amount allocated to each grant recipient. This does **not** incl
 
 ### Total cost profile amount  
 The amount the recipient expects to spend in either each quarter or each year, depending on the policy.  
+
 **Data type:**  Decimal  
 **Format:** Numerical  
 **Conditions:** Mandatory  
@@ -187,6 +190,7 @@ The amount the recipient expects to spend in either each quarter or each year, d
 
 ### Total cost profile amount year and quarter  
 Whether the total cost profile amount refers to a year or a quarter.  
+
 **Data type:** Date  
 **Format:** QX/ YYYY  
 **Conditions:** Mandatory  
@@ -194,6 +198,7 @@ Whether the total cost profile amount refers to a year or a quarter.
 
 ### Total expenditure per profile year  
 The total expenditure for the financial year.  
+
 **Data type:** Decimal  
 **Format:** Numerical  
 **Conditions:** Mandatory  
@@ -201,13 +206,15 @@ The total expenditure for the financial year.
 
 ### Project cost category breakdown  
 Grant recipients should select the category of the spend. These categories will likely be different for each fund and will be decided by the policy team.  
+
 **Data type:** Options list  
 **Format:** This will be decided by the policy team.  
 **Conditions:** Either project cost category breakdown or project costs breakdown by theme should be collected.  
 **Validation:** User must select at least one of the options listed. 
 
 ### Project cost category breakdown value  
-This is the amount spent in each category listed in Project cost category breakdown.  
+This is the amount spent in each category listed in project cost category breakdown.  
+
 **Data type:** Decimal  
 **Format:** Numerical  
 **Conditions:** Mandatory if the project cost category breakdown is being collected.   
@@ -215,6 +222,7 @@ This is the amount spent in each category listed in Project cost category breakd
 
 ### Project costs breakdown by theme  
 Grant recipients should select the theme of the spend. These categories will likely be different for each fund and will be decided by the policy team.  
+
 **Data type:** Options list  
 **Format:** This will be decided by the policy team.  
 **Conditions:** Either project cost category breakdown or project costs breakdown by theme should be collected.  
@@ -222,21 +230,24 @@ Grant recipients should select the theme of the spend. These categories will lik
 
 ### Project cost breakdown by theme value  
 This is the amount spent in each category listed in Project cost category breakdown by theme.  
+
 **Data type:** Decimal  
 **Format:** Numerical  
 **Conditions:** Mandatory when Project cost breakdown by theme option is selected.  
-**Validation:** **Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
 
 ### Value of secured match funding  
 The amount of match funding secured from other parties.  
+
 **Data type:** Decimal  
 **Format:** Numerical  
 **Conditions:** Only required if Match Funding is required by the grant.  
-**Validation:** **Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
 
 ### Source of secured match funding  
 Where match funding will come from. This is for amounts that have been secured.  
-**Data type:**  Options list
+
+**Data type:**  Options list  
 **Format:** Must be one of the following options:  
 
 -  Third party funder  
@@ -250,14 +261,16 @@ Where match funding will come from. This is for amounts that have been secured.
 
 ### Value of match funding being secured  
 The amount of match funding being secured from other parties.  
+
 **Data type:** Decimal  
 **Format:** Numerical  
 **Conditions:** Only required if match funding is required by the grant.  
-**Validation:** **Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
 
 ### Source of match funding being secured  
 Where match funding will come from. This is for amounts that have not been secured yet.  
-**Data type:**  Options list
+
+**Data type:**  Options list  
 **Format:** Must be one of the following options:  
 
 -  Third party funder  
@@ -266,19 +279,20 @@ Where match funding will come from. This is for amounts that have not been secur
 - Private funding  
 - Other  
 
-**Conditions:** Mandatory if there is match funding  
+**Conditions:** Mandatory if there is match funding.  
 **Validation:** Must be one of the above options.  
-
 
 ### RDEL (Resource Departmental Expenditure Limit) amount  
 The amount of revenue or resource expenditure for a scheme, programme or project.  
+
 **Data type:** Decimal  
 **Format:** Numerical  
 **Conditions:** Only required if the fund has a RDEL  
-**Validation:** **Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
 
 ### CDEL (Capital Departmental Expenditure Limit) amount   
 The amount of capital expenditure for a scheme, programme or project.  
+
 **Data type:** Decimal  
 **Format:** Numerical  
 **Conditions:** Mandatory  
