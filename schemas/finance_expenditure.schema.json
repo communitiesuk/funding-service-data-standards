@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Finance - Expenditure",
+  "type": "object",
+  "properties": {
+    "capitalCommittedSpend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Capital committed expenditure in GBP to two decimal places."
+    },
+    "revenueCommittedSpend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Revenue committed expenditure in GBP to two decimal places."
+    },
+    "capitalForecastSpend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Anticipated capital expenditure in GBP to two decimal places."
+    },
+    "revenueForecastSpend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Anticipated revenue expenditure in GBP to two decimal places."
+    },
+    "capitalActualSpend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Actual capital expenditure in GBP to two decimal places."
+    },
+    "revenueActualSpend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Actual revenue expenditure in GBP to two decimal places."
+    },
+    "capitalUnderspend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Expected unspent capital allocation in GBP. Conditionally optional."
+    },
+    "revenueUnderspend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Expected unspent revenue allocation in GBP. Conditionally optional."
+    },
+    "actualCapitalMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "default": "N/A",
+      "description": "Actual match funding for capital. Conditionally optional."
+    },
+    "forecastCapitalMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "default": "N/A",
+      "description": "Forecast match funding for capital. Conditionally optional."
+    },
+    "committedCapitalMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "default": "N/A",
+      "description": "Committed match funding for capital. Conditionally optional."
+    },
+    "actualRevenueMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "default": "N/A",
+      "description": "Actual match funding for revenue. Conditionally optional."
+    },
+    "forecastRevenueMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "default": "N/A",
+      "description": "Forecast match funding for revenue. Conditionally optional."
+    },
+    "committedRevenueMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "default": "N/A",
+      "description": "Committed match funding for revenue. Conditionally optional."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record creation timestamp."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "User who created the record."
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record last update timestamp."
+    },
+    "lastUpdatedBy": {
+      "type": "string",
+      "description": "User who last updated the record."
+    }
+  },
+  "required": [
+    "capitalCommittedSpend",
+    "revenueCommittedSpend",
+    "capitalForecastSpend",
+    "revenueForecastSpend",
+    "capitalActualSpend",
+    "revenueActualSpend",
+    "createdAt",
+    "createdBy",
+    "lastUpdated",
+    "lastUpdatedBy"
+  ],
+  "additionalProperties": false
+}

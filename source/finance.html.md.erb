@@ -5,7 +5,18 @@ last_reviewed_on: 2025-10-04
 review_in: 6 months
 
 ---
-# Finance
+# Finance Expeniture
+### version: 1.0
+
+Finance expenditure data points are the data points related to monitoring and evaluation. The expenditure standard is required to ensure monitoring and evaluation data is captured in a standard format to enable comparison across both grant recipients and grants. 
+
+## Status
+
+| Attribute | Details |
+|---------------|---------------|
+| The Funding Service SME | Callum Woolgar |
+| Data Standard Owner (The Business) | Funding Service |
+| Status | Ready for implementation |
 
 ## Expenditure data standards  
 These standards contain monitoring and evaluation data.  
@@ -162,6 +173,185 @@ Alternative funding sources that are committed to be spent on revenue-related ac
 **Conditions:** Mandatory if there is match funding  
 **Validation:** Must be one of the above options.  
 
+## JSON Schema
+###this schema is currently an alpha schema and will be subject to change
+```
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Finance - Expenditure",
+  "type": "object",
+  "properties": {
+    "capitalCommittedSpend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Capital committed expenditure in GBP to two decimal places."
+    },
+    "revenueCommittedSpend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Revenue committed expenditure in GBP to two decimal places."
+    },
+    "capitalForecastSpend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Anticipated capital expenditure in GBP to two decimal places."
+    },
+    "revenueForecastSpend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Anticipated revenue expenditure in GBP to two decimal places."
+    },
+    "capitalActualSpend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Actual capital expenditure in GBP to two decimal places."
+    },
+    "revenueActualSpend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Actual revenue expenditure in GBP to two decimal places."
+    },
+    "capitalUnderspend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Expected unspent capital allocation in GBP. Conditionally optional."
+    },
+    "revenueUnderspend": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.00,
+      "description": "Expected unspent revenue allocation in GBP. Conditionally optional."
+    },
+    "actualCapitalMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "default": "N/A",
+      "description": "Actual match funding for capital. Conditionally optional."
+    },
+    "forecastCapitalMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "default": "N/A",
+      "description": "Forecast match funding for capital. Conditionally optional."
+    },
+    "committedCapitalMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "default": "N/A",
+      "description": "Committed match funding for capital. Conditionally optional."
+    },
+    "actualRevenueMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "default": "N/A",
+      "description": "Actual match funding for revenue. Conditionally optional."
+    },
+    "forecastRevenueMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "default": "N/A",
+      "description": "Forecast match funding for revenue. Conditionally optional."
+    },
+    "committedRevenueMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "default": "N/A",
+      "description": "Committed match funding for revenue. Conditionally optional."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record creation timestamp."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "User who created the record."
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record last update timestamp."
+    },
+    "lastUpdatedBy": {
+      "type": "string",
+      "description": "User who last updated the record."
+    }
+  },
+  "required": [
+    "capitalCommittedSpend",
+    "revenueCommittedSpend",
+    "capitalForecastSpend",
+    "revenueForecastSpend",
+    "capitalActualSpend",
+    "revenueActualSpend",
+    "createdAt",
+    "createdBy",
+    "lastUpdated",
+    "lastUpdatedBy"
+  ],
+  "additionalProperties": false
+}
+
+```
+
+# Finance Allocation
+### version: 1.0
+
+Finance data standard has been split into 3 sub categories - Allocation,  Payments and Expenditure, this is due to the size of the standard, the complexity of it and the number of teams and people involved. The purpose of the Allocation data standard is that these are the data points required BEFORE a grant is awarded. Multiple teams have been involved in the collation of these data points - Commercial Central Grants Hub and Assurance teams, finance business partners and grant policy teams. 
+
+## Status
+
+| Attribute | Details |
+|---------------|---------------|
+| The Funding Service SME | Callum Woolgar |
+| Data Standard Owner (The Business) | Funding Service |
+| Status | Ready for implementation |
+
+
+
 ## Allocation data standards  
 
 ### Funding requested  
@@ -298,6 +488,171 @@ The amount of capital expenditure for a scheme, programme or project.
 **Conditions:** Mandatory  
 **Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
 
+
+
+## JSON Schema
+###this schema is currently an alpha schema and will be subject to change
+```
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/allocation.schema.json",
+  "title": "Allocation",
+  "description": "Schema for allocation-related funding data",
+  "type": "object",
+  "properties": {
+    "fundingRequested": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "The total grant amount requested by each grant recipient (excluding match funding).",
+      "examples": [1000000.35]
+    },
+    "fundingAllocated": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "The total grant amount allocated to each grant recipient (excluding match funding).",
+      "examples": [1000000.35]
+    },
+    "totalCostProfileAmount": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "To inform the grant team about how and when the funding will be used.",
+      "examples": [1000000.35]
+    },
+    "totalCostProfileAmountYearAndQuarter": {
+      "type": "string",
+      "pattern": "^Q[1-4]/\\d{4}$",
+      "description": "Year and quarter for the total cost profile amount.",
+      "examples": ["Q1/2025"]
+    },
+    "totalExpenditurePerProfileYear": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "The total expenditure for the financial year.",
+      "examples": [1000000.35]
+    },
+    "projectCostCategoryBreakdown": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Project cost breakdown categories selected by the user.",
+      "minItems": 1
+    },
+    "projectCostCategoryBreakdownValue": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0,
+        "multipleOf": 0.01
+      },
+      "description": "Values associated with selected cost category breakdowns."
+    },
+    "projectCostsBreakdownByTheme": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Themes selected by the user for cost breakdown."
+    },
+    "projectCostBreakdownByThemeValue": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0,
+        "multipleOf": 0.01
+      },
+      "description": "Values associated with selected themes."
+    },
+    "matchFunding": {
+      "type": "boolean",
+      "description": "Whether match funding is being given.",
+      "default": false
+    },
+    "valueOfSecuredMatchFunding": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Amount of secured match funding."
+    },
+    "sourceOfSecuredMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "description": "Source of secured match funding."
+    },
+    "valueOfMatchFundingBeingSecured": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Amount of match funding that is being secured."
+    },
+    "sourceOfMatchFundingBeingSecured": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "description": "Source of match funding being secured."
+    },
+    "rdelAmount": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Resource/Revenue expenditure (RDEL)."
+    },
+    "cdelAmount": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Capital expenditure (CDEL)."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Datetime when the record was created."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "User who created the record."
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Datetime when the record was last updated."
+    },
+    "lastUpdatedBy": {
+      "type": "string",
+      "description": "User who last updated the record."
+    }
+  },
+  "required": [
+    "totalCostProfileAmount",
+    "totalCostProfileAmountYearAndQuarter",
+    "totalExpenditurePerProfileYear",
+    "matchFunding",
+    "rdelAmount",
+    "cdelAmount",
+    "createdAt",
+    "createdBy",
+    "lastUpdated",
+    "lastUpdatedBy"
+  ]
+}
+
+
+```
 
 
 ## Revision History
