@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/allocation.schema.json",
+  "title": "Allocation",
+  "description": "Schema for allocation-related funding data",
+  "type": "object",
+  "properties": {
+    "fundingRequested": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "The total grant amount requested by each grant recipient (excluding match funding).",
+      "examples": [1000000.35]
+    },
+    "fundingAllocated": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "The total grant amount allocated to each grant recipient (excluding match funding).",
+      "examples": [1000000.35]
+    },
+    "totalCostProfileAmount": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "To inform the grant team about how and when the funding will be used.",
+      "examples": [1000000.35]
+    },
+    "totalCostProfileAmountYearAndQuarter": {
+      "type": "string",
+      "pattern": "^Q[1-4]/\\d{4}$",
+      "description": "Year and quarter for the total cost profile amount.",
+      "examples": ["Q1/2025"]
+    },
+    "totalExpenditurePerProfileYear": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "The total expenditure for the financial year.",
+      "examples": [1000000.35]
+    },
+    "projectCostCategoryBreakdown": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Project cost breakdown categories selected by the user.",
+      "minItems": 1
+    },
+    "projectCostCategoryBreakdownValue": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0,
+        "multipleOf": 0.01
+      },
+      "description": "Values associated with selected cost category breakdowns."
+    },
+    "projectCostsBreakdownByTheme": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Themes selected by the user for cost breakdown."
+    },
+    "projectCostBreakdownByThemeValue": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0,
+        "multipleOf": 0.01
+      },
+      "description": "Values associated with selected themes."
+    },
+    "matchFunding": {
+      "type": "boolean",
+      "description": "Whether match funding is being given.",
+      "default": false
+    },
+    "valueOfSecuredMatchFunding": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Amount of secured match funding."
+    },
+    "sourceOfSecuredMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "description": "Source of secured match funding."
+    },
+    "valueOfMatchFundingBeingSecured": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Amount of match funding that is being secured."
+    },
+    "sourceOfMatchFundingBeingSecured": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "description": "Source of match funding being secured."
+    },
+    "rdelAmount": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Resource/Revenue expenditure (RDEL)."
+    },
+    "cdelAmount": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Capital expenditure (CDEL)."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Datetime when the record was created."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "User who created the record."
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Datetime when the record was last updated."
+    },
+    "lastUpdatedBy": {
+      "type": "string",
+      "description": "User who last updated the record."
+    }
+  },
+  "required": [
+    "totalCostProfileAmount",
+    "totalCostProfileAmountYearAndQuarter",
+    "totalExpenditurePerProfileYear",
+    "matchFunding",
+    "rdelAmount",
+    "cdelAmount",
+    "createdAt",
+    "createdBy",
+    "lastUpdated",
+    "lastUpdatedBy"
+  ]
+}
