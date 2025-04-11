@@ -9,9 +9,11 @@ review_in: 6 months
 # Outcomes taxonomy
 ### version: 1.0
 
-In government funding, outcomes are the short- to medium-term changes that are achieved. They are a way to measure the effectiveness of a program or service and to determine value for money. They are determined as the external consequences (results) of changes in service outputs.
+Outcomes are short- to medium-term changes caused by outputs.  They help to measure how effective a programme or service is and make sure it provides value for money.  
 
-The purpose of the standard for Outcomes (taxonomy) is to ensure that grant teams collecting data via the Funding Service are collecting a standard set of data, to enable analysis and comparison.
+The outcomes taxonomy standard makes sure grant teams collect a standard set of data to analyse and compare.  
+
+There should be both actual outcomes and forecast outcomes. 
 
 ## Status
 
@@ -22,6 +24,88 @@ The purpose of the standard for Outcomes (taxonomy) is to ensure that grant team
 | Status | Ready for implementation |
 
 ##Outcomes taxonomy data standards  
+### Outcome
+A list of outcomes that either have been or will be delivered because of this funding.  
+
+**Data type:** Options list  
+**Format:** To be confirmed later in 2025.  
+**Conditions:** Mandatory  
+**Validation:** Must be one of options confirmed later in 2025.  
+
+### Theme  
+Grant recipients should select the theme the outcome belongs to. These categories will likely be different for each fund and will be decided by the policy team.  
+
+**Data type:** Options list  
+**Format:** This will be decided by the policy team.  
+**Conditions:** Mandatory  
+**Validation:** Must be one of the above options.  
+
+### Indicator  
+Policy specific activities undertaken to achieve an outcome for a project or programme, based on the theme selected.  
+
+**Data type:** Options list  
+**Format:** This will be decided by the policy team, based on the theme selected.  
+**Conditions:** Mandatory if required by the theme.  
+**Validation:** Must be one of the above options.  
+
+### Unit of measurement   
+Unit of measurement used to measure outcomes.  
+
+**Data type:** Options list  
+**Format:** Must be one of the following options:  
+
+-  £  
+- km  
+-   n of  
+-  %  
+- % change    
+- FTE  
+- Time  
+- m²  
+- Other  
+
+**Conditions:** Mandatory  
+**Validation:** Must be one of the above options.  
+
+### Baseline date  
+Date that the outcome baseline data was collected.  
+
+**Data type:** Date  
+**Format:** DD-MM-YYYY  
+**Conditions:** Mandatory  
+**Validation:** Must be a correct date.  
+
+### Metric  
+The numbers used to track progress against outcomes over time.  
+
+**Data type:** Number  
+**Format:** Decimal  
+**Conditions:** Mandatory  
+**Validation:** Value to 1 decimal place  
+
+### Time period  
+Time period being reported on. This could be quarterly or yearly.  
+
+**Data type:** Date  
+**Format:** MM-YYYY  
+**Conditions:** Mandatory  
+**Validation:** Must be a correct date.  
+
+### Context    
+Further context to the outcome reported.  
+
+**Data type:** String   
+**Format:** Plain text  
+**Conditions:** Optional  
+**Validation:** Fewer than 5000 characters.  
+
+### Impact  
+Details of the impact that the project is having.  
+
+**Data type:** String   
+**Format:** Plain text  
+**Conditions:** Optional  
+**Validation:** Fewer than 5000 characters.  
 
 
 ## JSON Schema
