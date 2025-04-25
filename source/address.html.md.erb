@@ -1,0 +1,99 @@
+---
+title: Address
+weight: 24
+last_reviewed_on: 2025-04-25
+review_in: 6 months
+
+---
+#Address  
+This data standard represents how addresses are recorded with MHCLG.  
+##Address data standards  
+### Street address  
+The street address of the primary address of the organisation receiving the grant.  
+
+**Data type:** String  
+**Format:** Alphanumeric  
+**Conditions:** Optional. Only required if the award is not for individuals.  
+**Validation:** Fewer than 256 characters.  
+
+### Postcode  
+The postcode of the primary address of the organisation receiving the grant.  
+
+**Data type:** String  
+**Format:** Alphanumeric  
+**Conditions:** Optional. Only required if the award is not for individuals and the country is the UK.  
+**Validation:** Valid postcode with or without space.  
+
+### City  
+The city of the organisation’s primary address.  
+
+**Data type:** String  
+**Format:** Alphanumeric  
+**Conditions:** Optional. Only required if the award is not for individuals.  
+**Validation:** Fewer than 256 characters.  
+
+### County  
+The county of the organisation’s primary address.  
+
+**Data type:** String  
+**Format:** Alphanumeric  
+**Conditions:** Optional. Only required if the award is not for individuals.  
+**Validation:** Fewer than 256 characters.  
+
+### Country  
+The country of the organisation’s primary address.  
+
+**Data type:** Picklist  
+**Format:** A list of countries should be shown and the data provider should pick the correct one.  
+**Conditions:** Optional. Only required if the award is not for individuals.  
+**Validation:** Must be one of the above options.  
+
+### Latitude     
+The latitudinal coordinate of the organisation’s primary address.  
+
+**Data type:** Decimal   
+**Format:** A number between -90 and 90  
+**Conditions:** Mandatory  
+**Validation:** Must be a number between -90 and 90   
+
+This standard is automatically generated and the data provider does not need to enter this information.  
+
+### Longitude  
+The longitudinal coordinate of the organisation’s primary address.  
+
+**Data type:** Decimal  
+**Format:** A number between -180 and 180  
+**Conditions:** Mandatory  
+**Validation:** Must be numeric and between -180 and 180  
+
+This standard is automatically generated and the data provider does not need to enter this information.  
+
+### Location WKT  
+The spatial representation of a point in well-known text (WKT) format.  
+
+**Data type:** String  
+**Format:** POINT(longitude latitude)  
+**Conditions:** Optional  
+**Validation:** Must follow POINT(x y) syntax, and coordinates within valid range.  
+
+This standard is automatically generated and the data provider does not need to enter this information.  
+
+
+## Reference Data
+
+| Reference data field | Source |
+|---------------|---------------|
+
+## Useful links
+
+| Useful links | Details |
+|--------------|---------|
+
+
+## Revision History
+
+| Revision | Reason | Date approved |
+|---------------|---------------|---------------|
+
+
+## Review date
