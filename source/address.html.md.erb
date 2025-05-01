@@ -5,8 +5,19 @@ last_reviewed_on: 2025-04-25
 review_in: 6 months
 
 ---
-#Address  
+
+#Address 
+### version: 1.0 
 This data standard represents how addresses are recorded with MHCLG.  
+
+## Status
+
+| Attribute | Details |
+|---------------|---------------|
+| The Funding Service SME | Callum Woolgar |
+| Data Standard Owner (The Business) | Funding Service |
+| Status | Ready for implementation |
+
 ##Address data standards  
 ### Street address  
 The street address of the primary address of the organisation receiving the grant.  
@@ -77,6 +88,100 @@ The spatial representation of a point in well-known text (WKT) format.
 **Validation:** Must follow POINT(x y) syntax, and coordinates within valid range.  
 
 This standard is automatically generated and the data provider does not need to enter this information.  
+
+
+## JSON Schema
+###this schema is currently an alpha schema and will be subject to change
+'''
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/street-address.schema.json",
+    "description": "JSON Schema for address entities in MHCLG Funding",
+    "title": "Street Address",
+    "type": "object",
+    "properties": {
+      "streetAddress": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 255,
+        "description": "The street address of the recipient organisation.",
+        "default": "N/A"
+      },
+      "postalCode": {
+        "type": "string",
+        "pattern": "^[A-Z]{1,2}[0-9][0-9A-Z]? ?[0-9][A-Z]{2}$",
+        "description": "The postcode of the organisation’s address.",
+        "default": "N/A"
+      },
+      "city": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 255,
+        "description": "The city of the organisation’s address.",
+        "default": "N/A"
+      },
+      "county": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 255,
+        "description": "The county of the organisation’s primary address.",
+        "default": "N/A"
+      },
+      "country": {
+        "type": "string",
+        "enum": ["United Kingdom", "Other"],
+        "description": "The country of the organisation’s primary address.",
+        "default": "N/A"
+      },
+      "latitude": {
+        "type": "number",
+        "minimum": -90,
+        "maximum": 90,
+        "description": "The latitudinal coordinate of an address.",
+        "default": null
+      },
+      "longitude": {
+        "type": "number",
+        "minimum": -180,
+        "maximum": 180,
+        "description": "The longitudinal coordinate of an address.",
+        "default": null
+      },
+      "locationWKT": {
+        "type": "string",
+        "pattern": "^POINT\\((-?\\d+(\\.\\d+)?) (-?\\d+(\\.\\d+)?)\\)$",
+        "description": "The spatial representation of a point in Well-Known Text (WKT) format.",
+        "default": "N/A"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp for when the entry was created."
+      },
+      "createdBy": {
+        "type": "string",
+        "description": "Identifier for the user or system that created the record."
+      },
+      "lastUpdated": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp for when the entry was last updated."
+      },
+      "lastUpdatedBy": {
+        "type": "string",
+        "description": "Identifier for the user or system that last updated the record."
+      }
+    },
+    "required": [
+      "latitude",
+      "longitude",
+      "createdAt",
+      "createdBy",
+      "lastUpdated",
+      "lastUpdatedBy"
+    ]
+}
+'''
 
 
 ## Reference Data
