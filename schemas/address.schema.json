@@ -3,15 +3,6 @@
     "description": "JSON Schema for User entities in MHCLG",
     "title": "User",
     "type": "object",
-    "required": [
-        "id",
-        "uprn",
-        "last_name",
-        "organisation",
-        "role",
-        "created_at",
-        "created_by"
-    ],
     "properties": {
         "id": {
             "type": "string",
