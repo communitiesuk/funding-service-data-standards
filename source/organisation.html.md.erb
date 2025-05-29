@@ -28,8 +28,8 @@ This data standard describes the information MHCLG collects about organisations,
 The organisation data standard consists of the following entities:
 
 - **Organisation** - the main data entity detailing Organisation information
-- **Person** - the main contact for the organisation
 - **Address** - the primary contact address
+- **Person** - the main contact for the organisation
 
 ## Organisation standards  
 
@@ -64,6 +64,14 @@ An alternative name of the organisation.
 **Conditions:** Optional  
 **Validation:** Fewer than 160 characters.  
 
+### Charity Commission number
+The Charity Commission number for the charity.
+
+**Data type:** String
+**Format:** Alphanumeric
+**Conditions:** This must be supplied if the organisation is a charity.
+**Validation:** It must be a number between 6 and 8 characters. A hyphen can be used for the first character.
+
 ### Companies House reference number  
 The Companies House registration number for the organisation.   
 
@@ -71,14 +79,6 @@ The Companies House registration number for the organisation.
 **Format:**   Alphanumeric  
 **Conditions:** This must be supplied if the organisation is a limited company.   
 **Validation:** 8 numbers, or 2 letters followed by 6 numbers.   
-
-### Charity Commission number  
-The Charity Commission number for the charity.  
-
-**Data type:** String  
-**Format:** Alphanumeric  
-**Conditions:** This must be supplied if the organisation is a charity.  
-**Validation:** It must be a number between 6 and 8 characters. A hyphen can be used for the first character.  
 
 ### Local Authority code  
 
@@ -211,7 +211,7 @@ This standard is automatically generated and the data provider does not need to 
             "default": "Local authority"
         },
         "address": {
-            "$ref": "schemas/user.schema.json",
+            "$ref": "schemas/address.schema.json",
             "description": "A reference to the Address of the Organisation."
         },
         "primary_contact": {
