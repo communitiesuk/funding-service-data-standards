@@ -1,0 +1,329 @@
+---
+title: Finance Allocation
+weight: 22
+last_reviewed_on: 2025-10-04
+review_in: 6 months
+
+---
+# Finance allocation
+### version: 1.0
+
+The allocation data standard is the data points required **before** a grant is awarded. Multiple teams have been involved in creating these data points, including Commercial Central Grants Hub and Assurance teams, finance business partners and grant policy teams. 
+
+## Status
+
+| Attribute | Details |
+|---------------|---------------|
+| The Funding Service SME | Callum Woolgar |
+| Data Standard Owner (The Business) | Funding Service |
+| Status | Ready for implementation |
+
+
+
+## Allocation data standards  
+
+### Funding requested  
+The total grant amount requested by each grant recipient. This does **not** include match funding.  
+
+**Data type:**  Decimal  
+**Format:** Numerical  
+**Conditions:** Mandatory for competitive funds.  
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+
+### Funding allocated   
+The total grant amount allocated to each grant recipient. This does **not** include match funding.  
+
+**Data type:**  Decimal  
+**Format:** Numerical  
+**Conditions:** Mandatory for allocative funds.   
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+
+### Total cost profile amount  
+The amount the recipient expects to spend in either each quarter or each year, depending on the policy.  
+
+**Data type:**  Decimal  
+**Format:** Numerical  
+**Conditions:** Mandatory  
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+
+### Total cost profile amount year and quarter  
+Whether the total cost profile amount refers to a year or a quarter.  
+
+**Data type:** Date  
+**Format:** QX/ YYYY  
+**Conditions:** Mandatory  
+**Validation:** Check against date format.  
+
+### Total expenditure per profile year  
+The total expenditure for the financial year.  
+
+**Data type:** Decimal  
+**Format:** Numerical  
+**Conditions:** Mandatory  
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+
+### Project cost category breakdown  
+Grant recipients should select the category of the spend. These categories will likely be different for each fund and will be decided by the policy team.  
+
+**Data type:** Options list  
+**Format:** This will be decided by the policy team.  
+**Conditions:** Either project cost category breakdown or project costs breakdown by theme should be collected.  
+**Validation:** User must select at least one of the options listed. 
+
+### Project cost category breakdown value  
+This is the amount spent in each category listed in project cost category breakdown.  
+
+**Data type:** Decimal  
+**Format:** Numerical  
+**Conditions:** Mandatory if the project cost category breakdown is being collected.   
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+
+### Project costs breakdown by theme  
+Grant recipients should select the theme of the spend. These categories will likely be different for each fund and will be decided by the policy team.  
+
+**Data type:** Options list  
+**Format:** This will be decided by the policy team.  
+**Conditions:** Either project cost category breakdown or project costs breakdown by theme should be collected.  
+**Validation:** User must select at least one of the options listed.  
+
+### Project cost breakdown by theme value  
+This is the amount spent in each category listed in Project cost category breakdown by theme.  
+
+**Data type:** Decimal  
+**Format:** Numerical  
+**Conditions:** Mandatory when Project cost breakdown by theme option is selected.  
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+
+### Value of secured match funding  
+The amount of match funding secured from other parties.  
+
+**Data type:** Decimal  
+**Format:** Numerical  
+**Conditions:** Only required if match funding is required by the grant.  
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+
+### Source of secured match funding  
+Where match funding will come from. This is for amounts that have been secured.  
+
+**Data type:**  Options list  
+**Format:** Must be one of the following options:  
+
+- Third party funder  
+- Other UK government funding  
+- Local authority contribution
+- Private funding  
+- Other  
+
+**Conditions:** Mandatory if there is match funding  
+**Validation:** Must be one of the above options.  
+
+### Value of match funding being secured  
+The amount of match funding being secured from other parties.  
+
+**Data type:** Decimal  
+**Format:** Numerical  
+**Conditions:** Only required if match funding is required by the grant.  
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+
+### Source of match funding being secured  
+Where match funding will come from. This is for amounts that have not been secured yet.  
+
+**Data type:**  Options list  
+**Format:** Must be one of the following options:  
+
+- Third party funder  
+- Other UK government funding  
+- Local authority contribution
+- Private funding  
+- Other  
+
+**Conditions:** Mandatory if there is match funding.  
+**Validation:** Must be one of the above options.  
+
+### RDEL (Resource Departmental Expenditure Limit) amount  
+The amount of revenue or resource expenditure for a scheme, programme or project.  
+
+**Data type:** Decimal  
+**Format:** Numerical  
+**Conditions:** Only required if the fund has a RDEL.  
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+
+### CDEL (Capital Departmental Expenditure Limit) amount   
+The limit of capital expenditure for a scheme, programme or project.  
+
+**Data type:** Decimal  
+**Format:** Numerical  
+**Conditions:** Mandatory  
+**Validation:** A figure (in GBP) up to 2 decimal places. Cannot be negative.  
+
+## JSON Schema
+###this schema is currently an alpha schema and will be subject to change
+```
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/allocation.schema.json",
+  "title": "Allocation",
+  "description": "Schema for allocation-related funding data",
+  "type": "object",
+  "properties": {
+    "fundingRequested": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "The total grant amount requested by each grant recipient (excluding match funding).",
+      "examples": [1000000.35]
+    },
+    "fundingAllocated": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "The total grant amount allocated to each grant recipient (excluding match funding).",
+      "examples": [1000000.35]
+    },
+    "totalCostProfileAmount": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "To inform the grant team about how and when the funding will be used.",
+      "examples": [1000000.35]
+    },
+    "totalCostProfileAmountYearAndQuarter": {
+      "type": "string",
+      "pattern": "^Q[1-4]/\\d{4}$",
+      "description": "Year and quarter for the total cost profile amount.",
+      "examples": ["Q1/2025"]
+    },
+    "totalExpenditurePerProfileYear": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "The total expenditure for the financial year.",
+      "examples": [1000000.35]
+    },
+    "projectCostCategoryBreakdown": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Project cost breakdown categories selected by the user.",
+      "minItems": 1
+    },
+    "projectCostCategoryBreakdownValue": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0,
+        "multipleOf": 0.01
+      },
+      "description": "Values associated with selected cost category breakdowns."
+    },
+    "projectCostsBreakdownByTheme": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Themes selected by the user for cost breakdown."
+    },
+    "projectCostBreakdownByThemeValue": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0,
+        "multipleOf": 0.01
+      },
+      "description": "Values associated with selected themes."
+    },
+    "matchFunding": {
+      "type": "boolean",
+      "description": "Whether match funding is being given.",
+      "default": false
+    },
+    "valueOfSecuredMatchFunding": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Amount of secured match funding."
+    },
+    "sourceOfSecuredMatchFunding": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "description": "Source of secured match funding."
+    },
+    "valueOfMatchFundingBeingSecured": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Amount of match funding that is being secured."
+    },
+    "sourceOfMatchFundingBeingSecured": {
+      "type": "string",
+      "enum": [
+        "Third Party Funder",
+        "Other UK Government Funding",
+        "Local Authority Contribution",
+        "Private Funding",
+        "Other"
+      ],
+      "description": "Source of match funding being secured."
+    },
+    "rdelAmount": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Resource/Revenue expenditure (RDEL)."
+    },
+    "cdelAmount": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Capital expenditure (CDEL)."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Datetime when the record was created."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "User who created the record."
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Datetime when the record was last updated."
+    },
+    "lastUpdatedBy": {
+      "type": "string",
+      "description": "User who last updated the record."
+    }
+  },
+  "required": [
+    "totalCostProfileAmount",
+    "totalCostProfileAmountYearAndQuarter",
+    "totalExpenditurePerProfileYear",
+    "matchFunding",
+    "rdelAmount",
+    "cdelAmount",
+    "createdAt",
+    "createdBy",
+    "lastUpdated",
+    "lastUpdatedBy"
+  ]
+}
+
+
+```
+
+## Revision History
+
+| Revision | Reason | Date approved |
+|---------------|---------------|---------------|
+
+
+## Review date
